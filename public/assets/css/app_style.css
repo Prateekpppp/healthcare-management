@@ -1,0 +1,114 @@
+/* light theme */
+
+    /* border color: #1a1a1a; */
+    /* content_box background color: #fff */
+    /* normal text color: #000 */
+    /* special text color: #929391 */
+
+
+a {
+    text-decoration: none;
+}
+
+.form-control:focus, input:focus {
+    box-shadow: none;
+}
+
+.app_toast {
+    opacity: 1;
+    position: fixed;
+    top: 5%;
+    right: -100%;
+    min-width: 200px;
+    max-width: 250px;
+    padding: 0.2rem 0.9rem;
+    border-radius: 0.41rem;
+    z-index: 99999;
+    transition: all ease-in-out 0.4s;
+}
+
+.app_toast .toast_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.job-box {
+  border: 2px dotted #28a745;
+  padding: 20px;
+  border-radius: 10px;
+  background: #fffafa;
+}
+
+.disabled {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+    opacity: 0.4 !important;
+}
+
+/* .form-switch label {
+  display: inline-block;
+  position: relative;
+  padding-left: 40px;
+  font-size: 16px;
+  color: #111111;
+}
+.form-switch label:before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: 0;
+  top: 5px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+.form-switch label:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 4px;
+  top: 5px;
+  font-size: 10px;
+} */
+
+
+.form-check input[type="radio"]:checked + label:after {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f00c";
+  font-weight: 600;
+}
+.form-check input[type="radio"]:disabled + label {
+  opacity: 0.65;
+}
+.form-check input[type="radio"]:disabled + label:before {
+  background-color: #eeeeee;
+  cursor: not-allowed;
+}
+
+#mobile-navbar.collapse {
+  visibility: visible;
+}
+
+table th, label {
+  text-transform: capitalize;
+}
+
+table input, table select {
+  border: 1px solid #464de4;
+  height: 2rem;
+  width: 100%;
+}
+
+.table-responsive {
+  border: 1px solid #d5dcec;
+  border-radius: 10px;
+}
+
+select, input, textarea {
+  border: 1px #464de4 solid !important;
+}

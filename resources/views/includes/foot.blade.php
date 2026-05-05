@@ -1,0 +1,50 @@
+
+                </div>
+
+    @include('includes/footer')
+
+
+            </div>
+        </div>
+    </div>
+
+   @include('includes/app_toast')
+    <script src="{{ asset('assets') }}/vendors/js/vendor.bundle.base.js"></script>
+    <script src="{{ asset('assets') }}/vendors/chart.js/chart.umd.js"></script>
+    <script src="{{ asset('assets') }}/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="{{ asset('assets') }}/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="{{ asset('assets') }}/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+    <script src="{{ asset('assets') }}/vendors/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="{{ asset('assets') }}/vendors/raphael/raphael.min.js"></script>
+    <script src="{{ asset('assets') }}/vendors/morris.js/morris.min.js"></script>
+    <script src="{{ asset('assets') }}/js/off-canvas.js"></script>
+    <script src="{{ asset('assets') }}/js/hoverable-collapse.js"></script>
+    <script src="{{ asset('assets') }}/js/template.js"></script>
+    <script src="{{ asset('assets') }}/js/settings.js"></script>
+    <script src="{{ asset('assets') }}/js/todolist.js"></script>
+    <script src="{{ asset('assets') }}/js/dashboard.js"></script>
+    <script src="{{ asset('assets') }}/js/file-upload.js"></script>
+  <script src="{{ asset('assets') }}/vendors/select2/select2.min.js"></script>
+  <script src="{{ asset('assets') }}/js/select2.js"></script>
+  <script src="{{ asset('assets') }}/vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="{{ asset('assets') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="{{ asset('assets') }}/js/data-table.js"></script>
+    @include('includes/ajaxCalls')
+    @include('includes/script')
+
+    @yield('js')
+
+{{-- <script>
+    responseToast("{{$message}}",'bg-success');
+</script> --}}
+
+
+@if ($message = Session::get('success'))
+<script>
+    responseToast("{{$message}}",'bg-success');
+</script>
+@endif
+
+</body>
+
+</html>
