@@ -14,16 +14,16 @@ class PatientService extends Model
 
     public function appointments()
     {
-        return $this->belongsTo('App\Models\Appointment');
+        return $this->belongsTo('App\Models\Appointment','id','appointment_id');
     }
 
 	public function patient()
     {
-        return $this->belongsTo('App\Models\Patient');
+        return $this->belongsTo('App\Models\Patient','id','patient_id');
     }
     
     public function service()
     {
-        return $this->hasMany('App\Models\Service');
+        return $this->hasOne('App\Models\Service','id','service_id');
     }
 }

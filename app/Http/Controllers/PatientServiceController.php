@@ -15,7 +15,7 @@ class PatientServiceController extends Controller
     {
         $data = PatientService::where('patient_id', $request->id)->orderBy('id','desc')->get();
         $patient = Patient::find($request->id);
-        // dd($request->id);
+        // dd($data[0]->service->name);
         return view('patient_services.index' , compact('data', 'patient'));
     }
     

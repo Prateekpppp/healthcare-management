@@ -36,16 +36,16 @@
 						    	<td>{{$value->id}}</td>
 						    	<td>{{$value->service->name}}</td>
 						    	<td>{{$value->service->amount}}</td>
+                                @permission
 						    	<td>
                                     <div class="d-flex gap-3">
-                                        @permission
                                         <a href="{{route('app_action.trash',['model'=>'Service','id'=>$value->id])}}" class="delete-modal btn btn-danger"
                                         data-info="{{$value->id}}" id="deleteConfirm">
                                         <span class="glyphicon glyphicon-trash"></span> Delete
                                         </a>
-                                        @endpermission
                                     </div>
 						        </td>
+                                @endpermission
 						    	</tr>
 						    	@endforeach
 						    </tbody>
