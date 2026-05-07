@@ -25,5 +25,13 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('permission', function () {
             return User::getCurrentUser()->role_id == 1;
         });
+        
+        Blade::if('doctor', function () {
+            return User::getCurrentUser()->role_id == 2;
+        });
+        
+        Blade::if('reception', function () {
+            return User::getCurrentUser()->role_id == 3;
+        });
     }
 }

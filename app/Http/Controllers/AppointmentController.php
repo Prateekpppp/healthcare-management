@@ -16,7 +16,12 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::where('status','!=',0)->get();
+        if($this->currentUser->role_id == 2){
+          $appointments = Appointment::where('doctor_id',$this->doctor_id);
+        } else{
+          $appointments = Appointment::limit(10);
+        }
+        $appointments = $appointments->orderBy('id', 'desc')->get();
         $patients = Patient::get();
         $doctors = Doctor::get();
         return view('appointments.appointments', compact('appointments','patients','doctors'));
@@ -87,7 +92,7 @@ class AppointmentController extends Controller
         $patients = Patient::get();
         $doctors = Doctor::get();
 
-        return view('appointments.updateAppointment', compact('data','patients','doctors'));
+        // return view('appointments.updateAppointment', compact('data','patients','doctors'));
         
         return back()->with('success', 'Status changed successfully.');
         //
@@ -115,6 +120,23 @@ class AppointmentController extends Controller
         
     }
 
+    public function updatePage(Request $request)
+    {
+        $patients = Patient::get();
+        $doctors = Doctor::get();
+
+        if(isset($request->id) && $request->id){
+            $data = Appointment::find($request->id);
+            // dd($data);
+            return view('appointments.updatePage', compact('data','patients','doctors'));
+
+        } else{
+            return view('appointments.updatePage', compact('patients','doctors'));
+
+        }
+        
+    }
+
     public function updateAppointment(Request $request)
     {
         //return $request->all();
@@ -135,6 +157,15 @@ class AppointmentController extends Controller
         }
         
         //
+    }
+
+    public function getDoctorFee(Request $request)
+    {   
+        $doctor = Doctor::find($request->id);
+
+        return response()->json([
+            'fee' => $doctor->consultation_fee ?? 0
+        ]);
     }
 
     /**

@@ -32,6 +32,8 @@
     
     function callApi(type = null, url = null, data = null, action = null, beforeAction = null, catchError = null) {
         // if(type.tpLowerCase() != 'get'){
+        console.log('34erfv ajax');
+        
         $.ajax({
             type: type,
             url: `${url}`,

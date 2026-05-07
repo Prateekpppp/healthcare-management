@@ -24,8 +24,13 @@ class DashboardController extends Controller
       	$invoices = Invoice::where('user_id', $user)->whereDate('created_at', '=', date('Y-m-d'))->get();
       	$invoices = Invoice::limit(10)->get();
         $patients = Patient::get();
-        $appointments = Appointment::whereDate('appointment_date', '=', date('Y-m-d'))->get();
-        $appointments = Appointment::limit(10)->get();
+        $appointments = Appointment::whereDate('appointment_date', '=', date('Y-m-d'))->orderBy('id', 'desc')->get();
+        if($this->currentUser->role_id == 2){
+          $appointments = Appointment::where('doctor_id',$this->doctor_id)->limit(10)->get();
+        } else{
+          $appointments = Appointment::limit(10)->orderBy('id', 'desc')->get();
+        }
+        // dd($this->currentUser->id);
         $opds = OpdSales::whereDate('created_at' , '=', date('Y-m-d'))->get();
         $opds = OpdSales::limit(10)->get();
       	//return $invoices;

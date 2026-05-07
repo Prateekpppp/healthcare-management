@@ -29,8 +29,11 @@ use App\Http\Controllers\{
     ResultController,
     AccountController,
     AppController,
-    DoctorApiController
+    DiseaseController,
+    DoctorApiController,
+    PatientServiceController
 };
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +86,9 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::resource('appointment', AppointmentController::class);
     Route::get('appointments', [AppointmentController::class,'index'])->name('pages.appointments');
     Route::get('addAppointment', [AppointmentController::class,'addAppointment'])->name('pages.addAppointment');
+    Route::get('updateAppointment', [AppointmentController::class,'updatePage'])->name('pages.updateAppointment');
     Route::post('updateAppointment', [AppointmentController::class,'updateAppointment'])->name('post.updateAppointment');
+    Route::get('getDoctorFee', [AppointmentController::class, 'getDoctorFee'])->name('get.getDoctorFee');
 
     // Doctor
     Route::resource('doctor', DoctorController::class);
@@ -91,11 +96,26 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::get('updateDoctor', [DoctorController::class,'updatePage'])->name('pages.updateDoctor');
     Route::post('updateDoctor', [DoctorController::class,'updateData'])->name('post.updateDoctor');
 
-    // Doctor
+    // Patient
     Route::resource('patient', PatientController::class);
     Route::get('patients', [PatientController::class,'index'])->name('pages.patients');
     Route::get('updatePatient', [PatientController::class,'updatePage'])->name('pages.updatePatient');
     Route::post('updatePatient', [PatientController::class,'updateData'])->name('post.updatePatient');
+
+    // Disease
+    Route::get('diseases', [DiseaseController::class,'index'])->name('pages.diseases');
+    Route::get('updateDisease', [DiseaseController::class,'updatePage'])->name('pages.updateDisease');
+    Route::post('updateDisease', [DiseaseController::class,'updateData'])->name('post.updateDisease');
+
+    // Service
+    Route::get('services', [ServiceController::class,'index'])->name('pages.services');
+    Route::get('updateService', [ServiceController::class,'updatePage'])->name('pages.updateService');
+    Route::post('updateService', [ServiceController::class,'updateData'])->name('post.updateService');
+
+    // Patient Service
+    Route::get('patientServices', [PatientServiceController::class,'index'])->name('pages.patientServices');
+    Route::get('updatePatientService', [PatientServiceController::class,'updatePage'])->name('pages.updatePatientService');
+    Route::post('updatePatientService', [PatientServiceController::class,'updateData'])->name('post.updatePatientService');
 
     // Employee
     Route::resource('employee', EmployeeController::class);
@@ -229,4 +249,6 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     });
 
     Route::get('trash', [AppController::class,'trash'])->name('app_action.trash');
+
+    Route::post('changeStatus', [AppController::class,'changeStatus'])->name('app_action.changeStatus')->withoutMiddleware([VerifyCsrfToken::class]);
 });

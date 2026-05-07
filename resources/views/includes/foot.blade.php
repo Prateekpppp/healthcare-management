@@ -9,6 +9,7 @@
     </div>
 
    @include('includes/app_toast')
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets') }}/vendors/js/vendor.bundle.base.js"></script>
     <script src="{{ asset('assets') }}/vendors/chart.js/chart.umd.js"></script>
     <script src="{{ asset('assets') }}/vendors/progressbar.js/progressbar.min.js"></script>

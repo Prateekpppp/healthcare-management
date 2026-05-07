@@ -1,0 +1,191 @@
+🏥 COMPLETE STEP-BY-STEP HMS FLOW
+🔐 STEP 1: Login & Role Identification
+Flow:
+User logs in
+System checks role:
+Admin
+Doctor
+Receptionist
+Lab Technician
+Pharmacist
+Logic:
+if(auth()->user()->role_id == 1) {
+    // Admin
+}
+
+👉 This decides dashboard + permissions
+
+👤 STEP 2: Patient Registration
+Flow:
+Receptionist opens Add Patient
+Fill details:
+Name, Age, Gender
+Mobile, Address
+Click Save
+System Action:
+Generate Unique Patient ID
+Store record
+
+👉 Table: patients
+
+📅 STEP 3: Appointment Booking (OPD)
+Flow:
+Select Patient
+Select Doctor
+Select Date & Time
+Generate Token Number
+Status Flow:
+Pending → Confirmed → Checked-in → Completed
+
+👉 Table: appointments
+
+🧾 STEP 4: Patient Check-in (Arrival)
+Flow:
+Patient arrives
+Receptionist clicks:
+👉 “Check-in”
+System:
+Updates status → checked_in
+Adds to doctor queue
+🩺 STEP 5: Doctor Dashboard
+Flow:
+Doctor logs in
+Sees:
+Today’s appointments
+Only their patients
+Query:
+Appointment::where('doctor_id', auth()->id())
+    ->whereDate('date', today())
+    ->get();
+🧠 STEP 6: Consultation
+Flow:
+
+Doctor opens patient → adds:
+
+Symptoms
+Diagnosis
+Notes
+Vitals (optional)
+
+👉 Table: consultations
+
+💊 STEP 7: Prescription
+Flow:
+Doctor selects medicines
+Adds:
+Dosage
+Duration
+System:
+Saves prescription
+Sends to pharmacy
+
+👉 Tables:
+
+prescriptions
+prescription_items
+🧪 STEP 8: Lab Test (Optional)
+Flow:
+Doctor orders test
+Lab sees pending tests
+Uploads report
+Status:
+Pending → Completed
+
+👉 Tables:
+
+lab_tests
+lab_reports
+💊 STEP 9: Pharmacy
+Flow:
+Pharmacist opens prescription
+Checks stock
+Dispenses medicine
+Generates bill
+
+👉 Tables:
+
+medicines
+sales
+🛏️ STEP 10: Admission (IPD - Optional)
+Flow:
+
+If serious case:
+
+Click Admit Patient
+Assign:
+Bed
+Ward
+Doctor
+System tracks:
+Daily treatment
+Vitals
+
+👉 Tables:
+
+admissions
+beds
+💰 STEP 11: Billing
+Flow:
+
+System collects all charges:
+
+Consultation
+Lab
+Medicine
+Room
+Generate:
+Final Invoice
+
+👉 Tables:
+
+bills
+bill_items
+💳 STEP 12: Payment
+Flow:
+Choose payment mode:
+Cash
+UPI
+Card
+Mark as Paid
+
+👉 Table:
+
+payments
+📤 STEP 13: Discharge (If Admitted)
+Flow:
+Doctor writes summary:
+Diagnosis
+Treatment
+Final bill cleared
+Discharge patient
+📊 STEP 14: Reports & Dashboard
+Admin sees:
+Daily patients
+Revenue
+Doctor performance
+🔄 COMPLETE FLOW SUMMARY (REAL LIFE)
+Register Patient
+      ↓
+Book Appointment
+      ↓
+Check-in Patient
+      ↓
+Doctor Consultation
+      ↓
+Prescription / Lab
+      ↓
+Pharmacy / Lab Reports
+      ↓
+Billing
+      ↓
+Payment
+      ↓
+Discharge / Exit
+🧱 DATABASE FLOW (RELATIONSHIP MAP)
+Patient
+  ├── Appointments
+        ├── Consultation
+              ├── Prescription
+              ├── Lab Tests
+  ├── Bills
+        ├── Payments

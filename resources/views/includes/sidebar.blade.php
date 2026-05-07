@@ -1,17 +1,4 @@
 
-      @php
-        $permissionData = [
-          [
-            'index'=>'Dashboard',
-            'appointments'=>'Appointment',
-            'doctors'=>'Doctor',
-            'patients'=>'Patient',
-            'employees'=>'Employee',
-          ]
-        ];
-
-        $permissions = $permissionData[$currentUser->role_id - 1];
-      @endphp
 
         <!-- Header Section Start -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -20,7 +7,7 @@
 
           <?php unset($permissions['index']) ?>
           <li class="nav-item"> 
-            <a class="nav-link" href="index.php">
+            <a class="nav-link" href="{{route('pages.index')}}">
               <i class="icon-menu menu-icon"></i>
               <span class="menu-title">Dashboard</span>
               <span class="badge badge-success">New</span>

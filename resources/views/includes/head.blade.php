@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="{{ asset('assets') }}/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
 <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css">
 <link rel="stylesheet" href="{{ asset('assets') }}/css/app_style.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet" />
 
     @yield('head')
 

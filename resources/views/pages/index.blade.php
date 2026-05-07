@@ -6,16 +6,16 @@
     <div class="col-md-12 main">
        
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <h2 class="page-header">Dashboard</h2>
             </div>
-        </div><!--/.row-->
-         @if ($message = Session::get('success'))
-            <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button> 
-                    <strong>{{ $message }}</strong>
+            <div class="col-lg-6 d-flex justify-end align-items-center gap-2">
+                <a href="{{route('pages.updatePatient')}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Add Patient
+                </a>
+                <a href="{{route('pages.updateAppointment')}}" class="edit-appointment btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Add Appointment
+                </a>
             </div>
-        @endif
+        </div><!--/.row-->
         <div class="row">
             <div class="col-12 grid-margin">
                 <div class="card card-statistics">
@@ -59,6 +59,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if($currentUser->role_id != 2)
                         <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
                             <div class="card-body">
                                 <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
@@ -72,6 +73,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -79,6 +81,7 @@
         
         <div class="row">
             
+            @permission
             <!-- Today invoice collection -->
             <div class="col-12 grid-margin">
                 <div class="panel-heading">Today's Collection</div>
@@ -114,46 +117,12 @@
                 </div>
             </div>
             <!-- Today collection ends -->
-
+            @endpermission
             <!-- Appointment for today -->
             <div class="col-12 grid-margin">
                 <div class="panel-heading">Today's Appointment</div>
                 <div class="card">
-                    <div class="table-responsive">
-                        <table class="table center-aligned-table">
-                            <thead>
-                                <tr class="bg-light">
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Patient</th>
-                                    <th>Doctor</th>
-                                    <th>Description</th>
-                                    <th>Time</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i=1;?>
-                                @foreach($appointments as $appointment)
-                                <tr>
-                                    <td>{{$i++}}</td>
-                                    <td>{{$appointment->name}}</td>
-                                    <td>{{$appointment->patient->first_name}} {{$appointment->patient->last_name}}</td>
-                                    <td>{{$appointment->doctor->employee->first_name}} {{$appointment->doctor->employee->middle_name}} {{$appointment->doctor->employee->last_name}}</td>
-                                    <td>{{$appointment->description}}</td>
-                                    <td>{{$appointment->time}}</td>
-                                    <td>
-                                     @if($appointment->status)
-                                    <a class="btn-sm btn-success" href="{{ route('appointment.edit',$appointment->id) }}"><span class=" glyphicon glyphicon-ok"></span> Complete</a>    
-                                    @else
-                                    <a class="btn-sm btn-warning" href="{{ route('appointment.edit',$appointment->id) }}"><span class=" glyphicon glyphicon-refresh"> </span> Pending</a>
-                                    @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    @include('appointments.data')
                 </div>
             </div>
             <!-- Appointmet table ends -->
@@ -182,9 +151,9 @@
                                     <td>{{$opd->doctor->employee->first_name}} {{$opd->doctor->employee->middle_name}} {{$opd->doctor->employee->last_name}}</td>
                                     <td>{{$opd->created_at}}</td>
                                     @if($opd->status == 1)
-                                    <td><span class="btn-sm btn-success glyphicon glyphicon-ok"> Complete</span></td>
+                                    <td><span class="btn-sm btn btn-success glyphicon glyphicon-ok"> Complete</span></td>
                                     @else
-                                    <td><a class="btn-sm btn-warining" href="{{ route('doctor.edit',$opd->id) }}"><span class=" glyphicon glyphicon-refresh"> Pending</span></a> </span></td>
+                                    <td><a class="btn-sm btn btn-warining" href="{{ route('doctor.edit',$opd->id) }}"><span class=" glyphicon glyphicon-refresh"> Pending</span></a> </span></td>
                                     @endif
                                 </tr>
                                 @endforeach

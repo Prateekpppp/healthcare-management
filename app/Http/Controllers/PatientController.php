@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Disease;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Doctor;
@@ -15,7 +16,15 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $data = Patient::get();
+        if($this->currentUser->role_id == 2){
+            $doctorId = $this->doctor_id;
+            $data = Patient::whereHas('appointments', function ($q) use ($doctorId) {
+                $q->where('doctor_id', $doctorId);
+            });
+        } else{
+          $data = Patient::limit(10);
+        }
+        $data = $data->orderBy('id', 'desc')->get();
         return view('patients.index' , compact('data'));
 
         //
@@ -46,10 +55,10 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        $patient = Patient::find($id);
+        $data = Patient::find($id);
         //return $patient->appointments()->get();
         $doctors = Doctor::get();
-        return view('patients.profile' , compact('patient', 'doctors'));
+        return view('patients.profile' , compact('data', 'doctors'));
         //
     }
 
@@ -113,13 +122,14 @@ class PatientController extends Controller
     
     public function updatePage(Request $request)
     {
+        $diseases = Disease::get();
         if(isset($request->id) && $request->id){
             $data = Patient::find($request->id);
             // dd($data);
-            return view('patients.updatePage', compact('data'));
+            return view('patients.updatePage', compact('data', 'diseases'));
 
         } else{
-            return view('patients.updatePage');
+            return view('patients.updatePage', compact('diseases'));
 
         }
         

@@ -101,7 +101,7 @@
 
                         <div class="col-md-4 form-group">
                             <label>Working Day:</label>
-                            <select name="working_day[]" class="form-control" multiple>
+                            <select name="working_day[]" class="form-control select2" multiple>
                                 @php
                                     $days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
                                     $selectedDays = $data->working_day ?? [];
@@ -162,5 +162,12 @@
 @section('js')
     
     <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: "Select Working Days",
+                allowClear: true,
+                width: '100%'
+            });
+        });
     </script>
 @endsection

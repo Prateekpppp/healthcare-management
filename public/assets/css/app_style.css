@@ -112,3 +112,20 @@ table input, table select {
 select, input, textarea {
   border: 1px #464de4 solid !important;
 }
+
+select {
+    width: 100%;
+    padding-right: 35px;
+
+    /* remove default arrow */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* custom arrow */
+    background-color: #fff;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23555' height='20' viewBox='0 0 20 20' width='20'><path d='M5 7l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
