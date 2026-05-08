@@ -17,11 +17,16 @@ class Invoice extends Model
      */
     protected $dates = ['deleted_at'];
 
-	protected $fillable = ['patient_id','invoice_no','comment','payment_type','sub_total', 'tax_amount', 'total_amount','discount','user_id','status', 'cash'];
+	protected $fillable = ['patient_id','service_id','invoice_no','comment','payment_type','sub_total', 'tax_amount', 'total_amount','discount','user_id','status', 'cash'];
 
 	public function patient()
     {
         return $this->belongsTo('App\Models\Patient');
+    }
+    
+    public function service()
+    {
+        return $this->belongsTo('App\Models\Service');
     }
     
     public function user()

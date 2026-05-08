@@ -11,6 +11,7 @@
             'services'=>'Service',
             'packages'=>'Package',
             'medicines'=>'Medicine',
+            'invoices'=>'Invoice',
           ],
           [
             'index'=>'Dashboard',
@@ -21,6 +22,7 @@
             'services'=>'Service',
             'packages'=>'Package',
             'medicines'=>'Medicine',
+            'invoices'=>'Invoice',
           ],
           [
             'index'=>'Dashboard',
@@ -29,6 +31,7 @@
             'services'=>'Service',
             'packages'=>'Package',
             'medicines'=>'Medicine',
+            'invoices'=>'Invoice',
           ]
         ];
 

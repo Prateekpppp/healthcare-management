@@ -32,6 +32,8 @@ use App\Http\Controllers\{
     DiseaseController,
     DoctorApiController,
     MedicineController,
+    PackageMedicineController,
+    PackageSaleController,
     PatientServiceController,
     ServicePackageController
 };
@@ -103,6 +105,7 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::get('patients', [PatientController::class,'index'])->name('pages.patients');
     Route::get('updatePatient', [PatientController::class,'updatePage'])->name('pages.updatePatient');
     Route::post('updatePatient', [PatientController::class,'updateData'])->name('post.updatePatient');
+    Route::get('getPatientData', [PatientController::class, 'getPatientData'])->name('get.getPatientData');
 
     // Disease
     Route::get('diseases', [DiseaseController::class,'index'])->name('pages.diseases');
@@ -139,10 +142,39 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::get('updatePackage', [PackageController::class,'updatePage'])->name('pages.updatePackage');
     Route::post('updatePackage', [PackageController::class,'updateData'])->name('post.updatePackage');
 
+    // Package Sale
+    Route::get('packageSales', [PackageSaleController::class,'index'])->name('pages.packageSales');
+    Route::get('updatePackageSale', [PackageSaleController::class,'updatePage'])->name('pages.updatePackageSale');
+    Route::post('updatePackageSale', [PackageSaleController::class,'updateData'])->name('post.updatePackageSale');
+
     // Medicine
     Route::get('medicines', [MedicineController::class,'index'])->name('pages.medicines');
     Route::get('updateMedicine', [MedicineController::class,'updatePage'])->name('pages.updateMedicine');
     Route::post('updateMedicine', [MedicineController::class,'updateData'])->name('post.updateMedicine');
+
+    // Package Medicine
+    Route::get('packageMedicines', [PackageMedicineController::class,'index'])->name('pages.packageMedicines');
+    Route::get('updatePackageMedicine', [PackageMedicineController::class,'updatePage'])->name('pages.updatePackageMedicine');
+    Route::post('updatePackageMedicine', [PackageMedicineController::class,'updateData'])->name('post.updatePackageMedicine');
+
+    // Invoice
+    // Route::controller(InvoiceController::class)->prefix('invoice')->group(function () {
+    //     Route::get('/', 'index')->name('invoice.index');
+    //     Route::post('/', 'store')->name('invoice.store');
+    //     Route::get('patient/{patient_id}', 'patient')->name('invoice.patient');
+    //     Route::get('remove/{id}', 'remove')->name('invoice.remove');
+    //     Route::get('sales/{id}', 'tempSales')->name('invoice.sale');
+    //     Route::get('opd/{id}', [OpdController::class, 'opdSales'])->name('invoice.opd');
+    //     Route::get('report', 'report')->name('invoice.report');
+    //     Route::get('duplicate/{id}', 'duplicate')->name('invoice.duplicate');
+    //     Route::get('search', 'searchInvoice')->name('search.invoice');
+    //     Route::post('return', 'invoiceReturn')->name('invoice.return');
+    // });
+    Route::resource('invoice', InvoiceController::class);
+    Route::get('invoices', [InvoiceController::class,'index'])->name('pages.invoices');
+    Route::get('updateInvoice', [InvoiceController::class,'updatePage'])->name('pages.updateInvoice');
+    Route::post('updateInvoice', [InvoiceController::class,'updateData'])->name('post.updateInvoice');
+
 
     // Employee
     Route::resource('employee', EmployeeController::class);
@@ -202,19 +234,6 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
         Route::get('sale/{id}', 'packageSales')->name('package.sales');
     });
 
-    // Invoice
-    Route::controller(InvoiceController::class)->prefix('invoice')->group(function () {
-        Route::get('/', 'index')->name('invoice.index');
-        Route::post('/', 'store')->name('invoice.store');
-        Route::get('patient/{patient_id}', 'patient')->name('invoice.patient');
-        Route::get('remove/{id}', 'remove')->name('invoice.remove');
-        Route::get('sales/{id}', 'tempSales')->name('invoice.sale');
-        Route::get('opd/{id}', [OpdController::class, 'opdSales'])->name('invoice.opd');
-        Route::get('report', 'report')->name('invoice.report');
-        Route::get('duplicate/{id}', 'duplicate')->name('invoice.duplicate');
-        Route::get('search', 'searchInvoice')->name('search.invoice');
-        Route::post('return', 'invoiceReturn')->name('invoice.return');
-    });
 
     // OPD
     Route::controller(OpdController::class)->group(function () {

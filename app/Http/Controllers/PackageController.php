@@ -21,7 +21,7 @@ class PackageController extends Controller
     {
         //
         $data = Package::orderBy('id','desc')->get();
-        return view('medicines.index' , compact('data'));
+        return view('packages.index' , compact('data'));
     }
     
     public function updatePage(Request $request)

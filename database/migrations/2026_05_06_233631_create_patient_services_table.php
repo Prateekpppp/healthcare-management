@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('patient_id')->nullable();
             $table->string('appointment_id');
             $table->string('service_id');
+            $table->string('package_id')->nullable();
+            $table->string('medicine_id')->nullable();
             $table->string('quantity')->nullable();
             $table->timestamps();
         });

@@ -42,6 +42,8 @@
                                     <div class="d-flex gap-3">
                                         <a href="{{ route('patient.show',$value->id) }}" class="btn btn-secondary"> Profile </a>
                                         <a href="{{ route('pages.patientServices',['id'=>$value->id]) }}" class="btn btn-primary"> Services </a>
+                                        <a href="{{ route('pages.packageSales',['id'=>$value->id]) }}" class="btn btn-primary"> Packages </a>
+                                        <a href="{{ route('pages.invoices',['patient_id'=>$value->id]) }}" class="btn btn-primary"> Invoices </a>
                                         <a href="{{ route('pages.updatePatient',['id'=>$value->id]) }}" class="btn btn-primary"> Edit </a>
                                         @permission
                                         <a href="{{route('app_action.trash',['model'=>'Patient','id'=>$value->id])}}" class="delete-modal btn btn-danger"

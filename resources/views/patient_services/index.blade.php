@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12 d-flex flex-row justify-content-between align-items-center">
                 <h2 class="page-header">Services</h2>
-                <a href="{{route('pages.updatePatientService',['patient_id' => $patient->id])}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Assign Service
+                <a href="{{route('pages.updatePatientService',['patient_id' => $patient->id])}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Add New
                 </a>
             </div>
         </div>

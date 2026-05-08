@@ -152,4 +152,22 @@ class PatientController extends Controller
         }
         
     }
+
+    public function getPatientData(Request $request)
+    {
+        $patient = Patient::find($request->id);
+        $service_id = $request->service_id;
+        $fee = 0;
+        if ($service_id) {
+            $service = $patient->patientservices()->where('service_id', $service_id)->first();
+            if ($service) {
+                $fee = $service->pivot->fee;
+            }
+        }
+        $total_amount = $fee;
+        return response()->json([
+            'fee' => $fee,
+            'total_amount' => $total_amount
+        ]);
+    }
 }
