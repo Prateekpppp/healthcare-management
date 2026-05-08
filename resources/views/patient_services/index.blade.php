@@ -25,27 +25,29 @@
                                     <th>ID</th>
                                     <th>Service</th>
                                     <th>Price</th>
-                                    @permission
                                     <th>Action</th>
-                                    @endpermission
                                 </tr>
                             </thead>
 						    <tbody>
+                                @php
+                                    $cnt = 0;
+                                    @endphp
 						        @foreach($data as $key => $value)
 						    	<tr>
-						    	<td>{{$value->id}}</td>
+						    	<td>{{$cnt+=1}}</td>
 						    	<td>{{$value->service->name}}</td>
 						    	<td>{{$value->service->amount}}</td>
-                                @permission
 						    	<td>
                                     <div class="d-flex gap-3">
+                                        <a href="{{ route('pages.updatePatientService',['id'=>$value->id,'patient_id'=>$patient->id]) }}" class="edit-appointment btn btn-primary"> Edit </a>
+                                        @permission
                                         <a href="{{route('app_action.trash',['model'=>'Service','id'=>$value->id])}}" class="delete-modal btn btn-danger"
                                         data-info="{{$value->id}}" id="deleteConfirm">
                                         <span class="glyphicon glyphicon-trash"></span> Delete
                                         </a>
+                                        @endpermission
                                     </div>
 						        </td>
-                                @endpermission
 						    	</tr>
 						    	@endforeach
 						    </tbody>

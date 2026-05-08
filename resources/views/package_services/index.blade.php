@@ -7,8 +7,8 @@
        
         <div class="row">
             <div class="col-lg-12 d-flex flex-row justify-content-between align-items-center">
-                <h2 class="page-header">Services</h2>
-                <a href="{{route('pages.updateService')}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Add Service
+                <h2 class="page-header">Service Packages</h2>
+                <a href="{{route('pages.updateServicePackage',['service_id' => $service->id])}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Assign Service
                 </a>
             </div>
         </div>
@@ -23,8 +23,8 @@
                             <thead>
                                 <tr class="bg-light">
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
+                                    <th>Service</th>
+                                    <th>Package</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -35,14 +35,13 @@
 						        @foreach($data as $key => $value)
 						    	<tr>
 						    	<td>{{$cnt+=1}}</td>
-						    	<td>{{$value->name}}</td>
-						    	<td>{{$value->amount}}</td>
+						    	<td>{{$value->service->name}}</td>
+						    	<td>{{$value->package->name}}</td>
 						    	<td>
                                     <div class="d-flex gap-3">
-                                        <a href="{{ route('pages.updateService',['id'=>$value->id]) }}" class="edit-appointment btn btn-primary"> Edit </a>
-                                        <a href="{{ route('pages.servicePackage',['id'=>$value->id]) }}" class="edit-appointment btn btn-primary"> Package </a>
+                                        <a href="{{ route('pages.updateServicePackage',['id'=>$value->id,'service_id'=>$service->id]) }}" class="edit-appointment btn btn-primary"> Edit </a>
                                         @permission
-                                        <a href="{{route('app_action.trash',['model'=>'Service','id'=>$value->id])}}" class="delete-modal btn btn-danger"
+                                        <a href="{{route('app_action.trash',['model'=>'ServicePackage','id'=>$value->id])}}" class="delete-modal btn btn-danger"
                                         data-info="{{$value->id}}" id="deleteConfirm">
                                         <span class="glyphicon glyphicon-trash"></span> Delete
                                         </a>
@@ -55,7 +54,7 @@
                         </table>
                     </div>
                     @else
-                    <h3 align="center">Sorry No Diseases Found</h3>
+                    <h3 align="center">Sorry No Package Found</h3>
                     @endif
                 </div>
             </div>

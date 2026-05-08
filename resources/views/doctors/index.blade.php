@@ -31,9 +31,12 @@
                                 </tr>
                             </thead>
 						    <tbody>
+                                @php
+                                    $cnt = 0;
+                                    @endphp
 						        @foreach($data as $key => $value)
 						    	<tr>
-						    	<td>{{$value->id}}</td>
+						    	<td>{{$cnt+=1}}</td>
 						    	<td>{{$value->employee->first_name}} {{$value->employee->middle_name}} {{$value->employee->last_name}}</td>
                                 <td>{{ $value->employee->phone}}</td>
                                 <td>{{$value->employee->department->name}}</td>

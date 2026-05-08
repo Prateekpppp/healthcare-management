@@ -24,6 +24,11 @@ class Service extends Model
     {
         return $this->hasMany('App\Models\ServiceSale');
     }
+    
+    public function service_packages()
+    {
+        return $this->hasMany('App\Models\ServicePackage');
+    }
 
     
     //

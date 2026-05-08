@@ -31,7 +31,9 @@ use App\Http\Controllers\{
     AppController,
     DiseaseController,
     DoctorApiController,
-    PatientServiceController
+    MedicineController,
+    PatientServiceController,
+    ServicePackageController
 };
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
@@ -116,6 +118,31 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::get('patientServices', [PatientServiceController::class,'index'])->name('pages.patientServices');
     Route::get('updatePatientService', [PatientServiceController::class,'updatePage'])->name('pages.updatePatientService');
     Route::post('updatePatientService', [PatientServiceController::class,'updateData'])->name('post.updatePatientService');
+
+    // Service Package
+    Route::get('servicePackage', [ServicePackageController::class,'index'])->name('pages.servicePackage');
+    Route::get('updateServicePackage', [ServicePackageController::class,'updatePage'])->name('pages.updateServicePackage');
+    Route::post('updateServicePackage', [ServicePackageController::class,'updateData'])->name('post.updateServicePackage');
+
+    // Package
+    // Package
+    // Route::controller(PackageController::class)->prefix('package')->group(function () {
+    //     Route::get('/', 'getIndex')->name('package.index');
+    //     Route::post('/', 'store')->name('package.store');
+    //     Route::post('edit', 'edit')->name('package.edit');
+    //     Route::post('delete', 'delete')->name('package.delete');
+    //     Route::post('sale', 'packageSale')->name('package.sale.store');
+    //     Route::get('sale', 'sale')->name('package.sale');
+    //     Route::get('sale/{id}', 'packageSales')->name('package.sales');
+    // });
+    Route::get('packages', [PackageController::class,'index'])->name('pages.packages');
+    Route::get('updatePackage', [PackageController::class,'updatePage'])->name('pages.updatePackage');
+    Route::post('updatePackage', [PackageController::class,'updateData'])->name('post.updatePackage');
+
+    // Medicine
+    Route::get('medicines', [MedicineController::class,'index'])->name('pages.medicines');
+    Route::get('updateMedicine', [MedicineController::class,'updatePage'])->name('pages.updateMedicine');
+    Route::post('updateMedicine', [MedicineController::class,'updateData'])->name('post.updateMedicine');
 
     // Employee
     Route::resource('employee', EmployeeController::class);

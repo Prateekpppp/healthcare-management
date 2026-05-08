@@ -28,9 +28,12 @@
                                 </tr>
                             </thead>
 						    <tbody>
+                                @php
+                                    $cnt = 0;
+                                    @endphp
 						        @foreach($data as $key => $value)
 						    	<tr>
-						    	<td>{{$value->id}}</td>
+						    	<td>{{$cnt+=1}}</td>
 						    	<td>{{$value->name}}</td>
 						    	<td>
                                     <div class="d-flex gap-3">

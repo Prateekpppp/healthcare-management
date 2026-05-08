@@ -9,6 +9,8 @@
             'employees'=>'Employee',
             'diseases'=>'Disease',
             'services'=>'Service',
+            'packages'=>'Package',
+            'medicines'=>'Medicine',
           ],
           [
             'index'=>'Dashboard',
@@ -17,12 +19,16 @@
             'patients'=>'Patient',
             'diseases'=>'Disease',
             'services'=>'Service',
+            'packages'=>'Package',
+            'medicines'=>'Medicine',
           ],
           [
             'index'=>'Dashboard',
             'appointments'=>'Appointment',
             'patients'=>'Patient',
             'services'=>'Service',
+            'packages'=>'Package',
+            'medicines'=>'Medicine',
           ]
         ];
 
