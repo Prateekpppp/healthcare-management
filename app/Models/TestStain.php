@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class TestStain extends Model
+class TestStain extends BaseModel
 {
     protected $fillable = ['test_id', 'test_names'];
 

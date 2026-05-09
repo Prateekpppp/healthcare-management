@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Disease extends Model
+class Disease extends BaseModel
 {
     //
     public $timestamps = false;

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class DoctorReferred extends Model
+class DoctorReferred extends BaseModel
 {
     protected $fillable = ['doctor_id', 'invoice_id'];
 

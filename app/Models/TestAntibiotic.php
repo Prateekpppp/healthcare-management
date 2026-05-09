@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class TestAntibiotic extends Model
+class TestAntibiotic extends BaseModel
 {
    protected $fillable = ['name'];
 

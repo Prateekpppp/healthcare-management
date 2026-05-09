@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Service extends Model
+class Service extends BaseModel
 {
     
     
@@ -27,7 +27,7 @@ class Service extends Model
     
     public function service_packages()
     {
-        return $this->hasMany('App\Models\ServicePackage');
+        return $this->belongsToMany('App\Models\ServicePackage');
     }
 
     

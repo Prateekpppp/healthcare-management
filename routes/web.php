@@ -31,11 +31,13 @@ use App\Http\Controllers\{
     AppController,
     DiseaseController,
     DoctorApiController,
+    InventoryController,
     MedicineController,
     PackageMedicineController,
     PackageSaleController,
     PatientServiceController,
-    ServicePackageController
+    ServicePackageController,
+    SlotController
 };
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
@@ -156,6 +158,17 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::get('packageMedicines', [PackageMedicineController::class,'index'])->name('pages.packageMedicines');
     Route::get('updatePackageMedicine', [PackageMedicineController::class,'updatePage'])->name('pages.updatePackageMedicine');
     Route::post('updatePackageMedicine', [PackageMedicineController::class,'updateData'])->name('post.updatePackageMedicine');
+
+    // Package Inventory
+    Route::get('inventories', [InventoryController::class,'index'])->name('pages.inventories');
+    Route::get('updateInventory', [InventoryController::class,'updatePage'])->name('pages.updateInventory');
+    Route::post('updateInventory', [InventoryController::class,'updateData'])->name('post.updateInventory');
+
+    // Package Slot
+    Route::get('slots', [SlotController::class,'index'])->name('pages.slots');
+    Route::get('updateSlot', [SlotController::class,'updatePage'])->name('pages.updateSlot');
+    Route::post('updateSlot', [SlotController::class,'updateData'])->name('post.updateSlot');
+    Route::get('avaiableSlots', [SlotController::class, 'avaiableSlots'])->name('get.avaiableSlots');
 
     // Invoice
     // Route::controller(InvoiceController::class)->prefix('invoice')->group(function () {

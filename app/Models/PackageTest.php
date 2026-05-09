@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class PackageTest extends Model
+class PackageTest extends BaseModel
 {
 	protected $fillable = ['package_id', 'test_id', 'status'];
 

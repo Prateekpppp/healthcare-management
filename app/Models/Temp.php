@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Temp extends Model
+class Temp extends BaseModel
 {
 	protected $fillable = ['service_id','service_name', 'amount'];
 

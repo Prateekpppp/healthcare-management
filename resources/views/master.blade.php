@@ -12,6 +12,8 @@
             'packages'=>'Package',
             'medicines'=>'Medicine',
             'invoices'=>'Invoice',
+            'inventories'=>'Inventory',
+            'slots'=>'Slot',
           ],
           [
             'index'=>'Dashboard',
@@ -23,6 +25,8 @@
             'packages'=>'Package',
             'medicines'=>'Medicine',
             'invoices'=>'Invoice',
+            'inventories'=>'Inventory',
+            'slots'=>'Slot',
           ],
           [
             'index'=>'Dashboard',
@@ -32,6 +36,8 @@
             'packages'=>'Package',
             'medicines'=>'Medicine',
             'invoices'=>'Invoice',
+            'inventories'=>'Inventory',
+            'slots'=>'Slot',
           ]
         ];
 

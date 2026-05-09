@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Role extends Model
+class Role extends BaseModel
 {
      /**
      * setup variable mass assignment.

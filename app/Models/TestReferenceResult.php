@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class TestReferenceResult extends Model
+class TestReferenceResult extends BaseModel
 {
     protected $fillable = ['test_report_id', 'test_reference_id', 'result', 'flag'];
 

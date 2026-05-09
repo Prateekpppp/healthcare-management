@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class ServiceSale extends Model
+class ServiceSale extends BaseModel
 {
 	protected $fillable = ['service_id', 'service_name','amount', 'invoice_id' ];
     //

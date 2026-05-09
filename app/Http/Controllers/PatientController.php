@@ -6,6 +6,8 @@ use App\Models\Disease;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Doctor;
+use App\Models\PackageSale;
+use App\Models\Service;
 
 class PatientController extends Controller
 {
@@ -159,11 +161,20 @@ class PatientController extends Controller
         $service_id = $request->service_id;
         $fee = 0;
         if ($service_id) {
-            $service = $patient->patientservices()->where('service_id', $service_id)->first();
+            $service = $patient->patientservices()->where('service_id', $service_id)->with('service')->first();
+            // $service = Service::find($service_id);
+            // dd($service);
             if ($service) {
-                $fee = $service->pivot->fee;
+                // $fee = $service->pivot->fee;
+                $fee = $service->service->fee;
             }
         }
+        $packages = $patient->packageSales()->with('package')->get();
+        // dd($packages);
+        foreach ($packages as $key => $package) {
+            $fee += $package->package->price;
+        }
+        // dd($fee);
         $total_amount = $fee;
         return response()->json([
             'fee' => $fee,

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Test extends Model
+class Test extends BaseModel
 {
 	protected $fillable = ['name', 'service_id', 'report_type', 'description'];
     //

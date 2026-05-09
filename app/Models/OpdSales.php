@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class OpdSales extends Model
+class OpdSales extends BaseModel
 {
 	protected $fillable = ['doctor_id', 'opd_name','invoice_id', 'doctor_fee', 'opd_charge' ,'status'] ;
     

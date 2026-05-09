@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Report extends Model
+class Report extends BaseModel
 {
 	protected $fillable = ['patient_id','report','result','status', 'doctor_id'];
     //

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Hospital extends Model
+class Hospital extends BaseModel
 {
 	protected $fillable = 
 	[

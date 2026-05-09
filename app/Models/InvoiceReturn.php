@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class InvoiceReturn extends Model
+class InvoiceReturn extends BaseModel
 {
 	protected $fillable = ['invoice_id', 'return_amount', 'user_id', 'status', 'return_reason'];
     //

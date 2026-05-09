@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <div class="col-lg-12 d-flex flex-row justify-content-between align-items-center">
                     <h2 class="page-header">Invoices</h2>
-                    <a href="{{isset($patient->id) ? route('pages.invoices',['patient_id' => $patient->id]) : route('pages.invoices')}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> View All
+                    <a href="{{isset($data) ? route('pages.invoices',['id' => $data->patient_id]) : route('pages.invoices')}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> {{isset($data) ? 'Patient Invoices' : 'View All'}}
                     </a>
                 </div>
             </div>

@@ -31,11 +31,11 @@ class InvoiceController extends Controller
     
     public function index(Request $request)
     {
-        $patient = Patient::find($request->patient_id);
-        if(isset($request->patient_id) && $request->patient_id){
-            $data = Invoice::where('patient_id', $request->patient_id)->orderBy('id','desc')->get();
+        $patient = isset($request->id) ? Patient::find($request->id) : null;
+        if(isset($request->id) && $request->id){
+            $data = Invoice::where('patient_id', $request->id)->get();
         } else {
-            $data = Invoice::orderBy('id','desc')->get();
+            $data = Invoice::get();
         }
         // dd($data);
         return view('invoices.index' , compact('data', 'patient'));
@@ -44,23 +44,18 @@ class InvoiceController extends Controller
     public function updatePage(Request $request)
     {
       $setting = Hospital::first();
-      if(isset($request->patient_id) && $request->patient_id){
-        $patient = Patient::find($request->patient_id);
-      } else {
-        $patient = '';
+      $patients = Patient::get();
+      $doctors = Doctor::get();
+      $services = Service::get();
+      if(isset($request->id) && $request->id){
+          $data = Invoice::find($request->id);
+          // dd($data);
+          return view('invoices.updatePage', compact('data', 'patients', 'doctors','services','setting'));
+
+      } else{
+          return view('invoices.updatePage', compact('patients', 'doctors','services','setting'));
+
       }
-        $patients = Patient::all();
-        $doctors = Doctor::all();
-        $services = Service::all();
-        if(isset($request->id) && $request->id){
-            $data = Invoice::find($request->id);
-            // dd($data);
-            return view('invoices.updatePage', compact('data', 'patient', 'patients', 'doctors','services','setting'));
-
-        } else{
-            return view('invoices.updatePage', compact('patient', 'patients', 'doctors','services','setting'));
-
-        }
         
     }
 
@@ -111,7 +106,7 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->all();
+        //return $request->get();
         $temp_sales = Temp::get();
 
         if (count($temp_sales)) {
@@ -324,7 +319,7 @@ class InvoiceController extends Controller
 
     public function invoiceReturn(Request $request)
     {
-      //return $request->all();
+      //return $request->get();
       $invoice = Invoice::find($request->id);
       $this->validate($request, ['return_amount' => 'numeric']);
 
@@ -355,7 +350,7 @@ class InvoiceController extends Controller
         $users = User::get();
         $user = '';
 
-      if (count($request->all())) {
+      if (count($request->get())) {
 
             if ($request->starting_date) {
                 $starting_date = date('Y-m-d '.'00:00:00', strtotime($request->starting_date));

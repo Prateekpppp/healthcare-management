@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Patient extends Model
+class Patient extends BaseModel
 {
 
     
@@ -36,6 +37,11 @@ class Patient extends Model
     public function patientservices()
     {
         return $this->hasMany('App\Models\PatientService');
+    }
+
+    public function slots()
+    {
+        return $this->hasMany('App\Models\Slot');
     }
     //
 }
