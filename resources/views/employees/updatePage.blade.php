@@ -53,14 +53,12 @@
                         <div class="col-md-4 form-group">
                             <label>Type:</label>
                             <select class="form-control" name="type" required>
-                                <option value="{{ $data->type ?? '' }}">{{ $data->type ?? 'Select Type' }}</option>
-                                <option value="Doctor">Doctor</option>
-                                <option value="Laboratory">Laboratory</option>
-                                <option value="Reception">Reception</option>
-                                <option value="Pharmacy">Pharmacy</option>
-                                <option value="Accountant">Accountant</option>
-                                <option value="Nurse">Nurse</option>
-                                <option value="Other">Other</option>
+                                <option value="">Select</option>
+                                @foreach($roles as $type => $label)
+                                    <option value="{{ $type }}" {{ $data->type == $type ? 'selected' : '' }}>
+                                        {{ $label }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 

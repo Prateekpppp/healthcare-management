@@ -13,9 +13,9 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Employee::all();
+        $data = Employee::filter($request->all())->get();
         //$days = explode(',',$employees->working_day);
         return view('employees.index' , compact('data'));
 

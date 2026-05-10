@@ -17,9 +17,18 @@
                                 </tr>
                             </thead>
 						    <tbody>
+                                @php
+                                    $statuses = [
+                                        0 => 'Pending',
+                                        1 => 'Confirmed',
+                                        2 => 'Checked-in',
+                                        3 => 'Completed',
+                                    ];
+                                    $cnt = 0;
+                                @endphp
 						        @foreach($appointments as $key => $appointment)
 						    	<tr>
-						    	<td>{{$appointment->id}}</td>
+						    	<td>{{$cnt+=1}}</td>
 						    	{{-- <td>{{$appointment->name}}</td> --}}
 						    	<td>{{$appointment->patient->first_name}} {{$appointment->patient->last_name}}</td>
 						    	<td>{{$appointment->doctor->employee->first_name}} {{$appointment->doctor->employee->middle_name}} {{$appointment->doctor->employee->last_name}}</td>
@@ -28,14 +37,6 @@
 						    	<td>{{$appointment->time}}</td>
 						    	<td>{{$appointment->appointment_date}}</td>
 								<td> 
-                                    @php
-                                        $statuses = [
-                                            0 => 'Pending',
-                                            1 => 'Confirmed',
-                                            2 => 'Checked-in',
-                                            3 => 'Completed',
-                                        ];
-                                    @endphp
 
                                     <div class="form-group m-0">
                                         <select id="status" name="status" class="form-control m-0 changeStatus" data-id="{{$appointment->id}}" data-model="Appointment">
@@ -74,5 +75,5 @@
                         </table>
                     </div>
                     @else
-                    <h3 align="center">Sorry No appointment Found</h3>
+                    <h3 align="center">Sorry No Data Found</h3>
                     @endif

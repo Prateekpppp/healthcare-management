@@ -7,7 +7,7 @@
        
         <div class="row">
             <div class="col-lg-12 d-flex flex-row justify-content-between align-items-center">
-                <h2 class="page-header">Slot</h2>
+                <h2 class="page-header">Slots</h2>
                 <a href="{{isset($data) ? route('pages.slots',['id' => $data->patient_id]) : route('pages.slots')}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> 
                     {{isset($data) ? 'Patient Slots' : 'View All'}}
                 </a>
@@ -101,7 +101,7 @@
 
                             @for ($time = $start; $time <= $end; $time += 1800)
 
-                                <option value="{{ $time }}" {{$data->start_time == $time ? 'selected' : ''}}>
+                                <option value="{{ $time }}" {{isset($data->start_time) && $data->start_time == $time ? 'selected' : ''}}>
                                     {{ date('h:i A', $time) }}
                                 </option>
 
@@ -117,7 +117,7 @@
 
                             @for ($time = $start; $time <= $end; $time += 1800)
 
-                                <option value="{{ $time }}" {{$data->end_time == $time ? 'selected' : ''}}>
+                                <option value="{{ $time }}" {{isset($data->end_time) && $data->end_time == $time ? 'selected' : ''}}>
                                     {{ date('h:i A', $time) }}
                                 </option>
 

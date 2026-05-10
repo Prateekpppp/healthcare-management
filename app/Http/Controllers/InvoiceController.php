@@ -31,14 +31,16 @@ class InvoiceController extends Controller
     
     public function index(Request $request)
     {
-        $patient = isset($request->id) ? Patient::find($request->id) : null;
-        if(isset($request->id) && $request->id){
-            $data = Invoice::where('patient_id', $request->id)->get();
+        $patients = Patient::get();
+        $services = Service::get();
+        $patient = isset($request->patient_id) ? Patient::find($request->patient_id) : null;
+        if($patient){
+            $data = Invoice::where('patient_id', $request->patient_id)->get();
         } else {
-            $data = Invoice::get();
+            $data = Invoice::filter($request->all())->get();
         }
         // dd($data);
-        return view('invoices.index' , compact('data', 'patient'));
+        return view('invoices.index' , compact('data', 'patient','patients','services'));
     }
     
     public function updatePage(Request $request)
@@ -47,13 +49,14 @@ class InvoiceController extends Controller
       $patients = Patient::get();
       $doctors = Doctor::get();
       $services = Service::get();
+      $patient = $request->patient_id ? Patient::find($request->patient_id) : null;
       if(isset($request->id) && $request->id){
           $data = Invoice::find($request->id);
           // dd($data);
-          return view('invoices.updatePage', compact('data', 'patients', 'doctors','services','setting'));
+          return view('invoices.updatePage', compact('data', 'patients', 'doctors','services','setting', 'patient'));
 
       } else{
-          return view('invoices.updatePage', compact('patients', 'doctors','services','setting'));
+          return view('invoices.updatePage', compact('patients', 'doctors','services','setting', 'patient'));
 
       }
         

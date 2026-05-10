@@ -24,9 +24,9 @@
             'services'=>'Service',
             'packages'=>'Package',
             'medicines'=>'Medicine',
-            'invoices'=>'Invoice',
-            'inventories'=>'Inventory',
-            'slots'=>'Slot',
+            // 'invoices'=>'Invoice',
+            // 'inventories'=>'Inventory',
+            // 'slots'=>'Slot',
           ],
           [
             'index'=>'Dashboard',

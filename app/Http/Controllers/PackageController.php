@@ -17,10 +17,10 @@ use Auth;
 class PackageController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         //
-        $data = Package::orderBy('id','desc')->get();
+        $data = Package::filter($request->all())->get();
         return view('packages.index' , compact('data'));
     }
     

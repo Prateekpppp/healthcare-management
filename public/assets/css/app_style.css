@@ -113,6 +113,11 @@ select, input, textarea {
   border: 1px #464de4 solid !important;
 }
 
+select, input {
+  /* line-height: 7px !important; */
+  line-height: 1.5 !important;
+}
+
 select {
     width: 100%;
     padding-right: 35px;

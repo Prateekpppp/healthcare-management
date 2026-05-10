@@ -13,10 +13,10 @@
                 </a>
             </h2>
             <div class="d-flex gap-3">
-                <a href="{{ route('pages.patientServices',['id'=>$data->id]) }}" class="btn btn-primary"> Services </a>
-                <a href="{{ route('pages.packageSales',['id'=>$data->id]) }}" class="btn btn-primary"> Packages </a>
-                <a href="{{ route('pages.invoices',['id'=>$data->id]) }}" class="btn btn-primary"> Invoices </a>
-                <a href="{{ route('pages.slots',['id'=>$data->id]) }}" class="btn btn-primary"> Slots </a>
+                <a href="{{ route('pages.patientServices',['patient_id'=>$data->id]) }}" class="btn btn-primary"> Services </a>
+                <a href="{{ route('pages.packageSales',['patient_id'=>$data->id]) }}" class="btn btn-primary"> Packages </a>
+                <a href="{{ route('pages.invoices',['patient_id'=>$data->id]) }}" class="btn btn-primary"> Invoices </a>
+                <a href="{{ route('pages.slots',['patient_id'=>$data->id]) }}" class="btn btn-primary"> Slots </a>
             </div>
         </div>
     </div>

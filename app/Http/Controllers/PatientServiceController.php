@@ -13,17 +13,17 @@ class PatientServiceController extends Controller
 
     public function index(Request $request)
     {
-        $data = PatientService::where('patient_id', $request->id)->orderBy('id','desc')->get();
-        $patient = Patient::find($request->id);
+        $data = PatientService::where('patient_id', $request->patient_id)->get();
+        $patient = Patient::find($request->patient_id);
         // dd($data[0]->service->name);
         return view('patient_services.index' , compact('data', 'patient'));
     }
     
     public function updatePage(Request $request)
     {
-        $services = Service::orderBy('id','desc')->get();
+        $services = Service::get();
         $patient = Patient::find($request->patient_id);
-        $appointments = Appointment::where('patient_id', $request->patient_id)->orderBy('id','desc')->get();
+        $appointments = Appointment::where('patient_id', $request->patient_id)->get();
 
         if(isset($request->id) && $request->id){
             $data = PatientService::find($request->id);

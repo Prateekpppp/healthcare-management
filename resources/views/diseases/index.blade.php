@@ -13,6 +13,33 @@
             </div>
         </div>
         
+        <form method="GET" class="card p-3 mb-3 form-group">
+
+            <div class="row g-3">
+                
+                <!-- Name -->
+                <div class="col-md-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" value="{{request('name') ?? ''}}">
+                </div>
+
+                <!-- Buttons -->
+                <div class="col-md-3 d-flex align-items-end gap-2 pb-3">
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Filter
+                    </button>
+
+                    <a href="{{ url()->current() }}" class="btn btn-secondary w-100">
+                        Reset
+                    </a>
+
+                </div>
+
+            </div>
+
+        </form>
+
         <div class="row">
             
             <div class="col-12 grid-margin">

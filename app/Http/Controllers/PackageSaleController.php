@@ -12,15 +12,15 @@ class PackageSaleController extends Controller
     //
     public function index(Request $request)
     {
-        $data = PackageSale::where('patient_id', $request->id)->orderBy('id','desc')->get();
-        $patient = Patient::find($request->id);
+        $data = PackageSale::where('patient_id', $request->patient_id)->get();
+        $patient = Patient::find($request->patient_id);
         // dd($data[0]->service->name);
         return view('packageSales.index' , compact('data', 'patient'));
     }
     
     public function updatePage(Request $request)
     {
-        $packages = Package::orderBy('id','desc')->get();
+        $packages = Package::get();
         $patient = Patient::find($request->patient_id);
         if(isset($request->id) && $request->id){
             $data = PackageSale::find($request->id);

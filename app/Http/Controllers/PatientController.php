@@ -16,18 +16,20 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $diseases = Disease::get();
         if($this->currentUser->role_id == 2){
             $doctorId = $this->doctor_id;
-            $data = Patient::whereHas('appointments', function ($q) use ($doctorId) {
+            $data = Patient::filter($request->all())
+            ->whereHas('appointments', function ($q) use ($doctorId) {
                 $q->where('doctor_id', $doctorId);
             });
         } else{
-          $data = Patient::limit(10);
+          $data = Patient::filter($request->all())->limit(10);
         }
-        $data = $data->orderBy('id', 'desc')->get();
-        return view('patients.index' , compact('data'));
+        $data = $data->get();
+        return view('patients.index' , compact('data','diseases'));
 
         //
     }

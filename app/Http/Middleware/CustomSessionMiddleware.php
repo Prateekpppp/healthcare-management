@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Appdata;
+use App\Models\Role;
 
 class CustomSessionMiddleware
 {
@@ -20,9 +21,24 @@ class CustomSessionMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $roles = Role::pluck('name', 'id')->toArray();
+        // dd($roles);
+
+        $roles = [
+            1 => 'Admin',
+            2 => 'Doctor',
+            3 => 'Receptionist',
+            4 => 'Laboratory',
+            5 => 'Pharmacy',
+            6 => 'Accountant',
+            7 => 'Nurse',
+            8 => 'Other'
+        ];
 
         $currentUser = User::getCurrentUser();
+
         View::share('currentUser',$currentUser);
+        View::share('roles',$roles);
         return $next($request);
     }
 }

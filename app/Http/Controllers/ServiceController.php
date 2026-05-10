@@ -17,10 +17,10 @@ class ServiceController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
         //
-        $data = Service::orderBy('id','desc')->get();
+        $data = Service::filter($request->all())->get();
         return view('services.index' , compact('data'));
     }
     

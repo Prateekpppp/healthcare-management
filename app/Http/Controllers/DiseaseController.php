@@ -10,10 +10,10 @@ class DiseaseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $data = Disease::all();
+        $data = Disease::filter($request->all())->get();
         return view('diseases.index' , compact('data'));
     }
 

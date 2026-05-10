@@ -15,20 +15,27 @@ class SlotController extends Controller
     
     public function index(Request $request)
     {
-        $patient = isset($request->id) ? Patient::find($request->id) : null;
-        if(isset($request->id) && $request->id){
-            $data = Slot::where('patient_id', $request->id)->get();
-        } else {
-            $data = Slot::get();
-        }
+        $fillables = (new Slot())->getFillable();
+        $patient = isset($request->patient_id) ? Patient::find($request->patient_id) : null;
+        // if(isset($request->patient_id) && $request->patient_id){
+        //     $data = Slot::where('patient_id', $request->patient_id)->get();
+        // } else {
+        //     $data = Slot::get();
+        // }
+
+        $inventories = Inventory::get();
+        $patients = Patient::get();
+
+        $data = Slot::filter($request->all())->get();
         // dd($data[0]->service->name);
-        return view('slots.index' , compact('data', 'patient'));
+        return view('slots.index' , compact('data', 'patient','fillables', 'inventories', 'patients'));
     }
     
     public function updatePage(Request $request)
     {
         $inventories = Inventory::get();
         $patients = Patient::get();
+        // $patient = $request->patient_id ? Patient::find($request->patient_id) : null;
 
         if(isset($request->id) && $request->id){
             $data = Slot::find($request->id);
@@ -75,7 +82,10 @@ class SlotController extends Controller
         //     $query->whereTime('start_time', '<=', $request->start_time)
         //     ->whereTime('end_time', '>=', $request->start_time);
         // })
-        ->get(['start_time', 'end_time']);
+        ->selectRaw('count(*) as total_slots, start_time, MAX(end_time) as end_time')
+        ->groupBy('start_time','end_time')
+        ->having('total_slots', '>', 0)
+        ->get();
         
         return response()->json([
             'slots' => $slots,

@@ -76,4 +76,12 @@ class AppController extends Controller
         }
     }
 
+    public function searchItem(Request $request){
+        $model = 'App\\Models\\' . $request->model;
+        $model = app($model);
+        $items = $model->where($request->key, 'like', '%' . $request->search . '%')->paginate(10);
+        return response()->json([
+            'data' => $items,
+        ]);
+    }
 }

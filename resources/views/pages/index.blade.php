@@ -128,7 +128,7 @@
             <!-- Appointmet table ends -->
             
             <!-- OPD for today -->
-            <div class="col-12 grid-margin">
+            {{-- <div class="col-12 grid-margin">
                 <div class="panel-heading">Today's OPD</div>
                 <div class="card">
                     <div class="table-responsive">
@@ -161,7 +161,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- OPD table ends -->
             
 

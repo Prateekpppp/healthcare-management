@@ -13,6 +13,52 @@
             </div>
         </div>
         
+        <form method="GET" class="card p-3 mb-3 form-group">
+
+            <div class="row g-3">
+
+                <!-- Name -->
+                <div class="col-md-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" value="{{request('name') ?? ''}}">
+                </div>
+                
+                <!-- Phone -->
+                <div class="col-md-3">
+                    <label class="form-label">Phone</label>
+                    <input type="text" name="phone" class="form-control" value="{{request('phone') ?? ''}}">
+                </div>
+                
+                <!-- Type -->
+                <div class="col-md-3">
+                    <label class="form-label">Type</label>
+                    <select name="type" class="form-control select">
+                        <option value="">-- Select --</option>
+                        @foreach($roles as $roleId => $roleName)
+                            <option value="{{ $roleId }}" {{ request()->type == $roleId ? 'selected' : '' }}>
+                                {{ $roleName }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Buttons -->
+                <div class="col-md-3 d-flex align-items-end gap-2 pb-3">
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Filter
+                    </button>
+
+                    <a href="{{ url()->current() }}" class="btn btn-secondary w-100">
+                        Reset
+                    </a>
+
+                </div>
+
+            </div>
+
+        </form>
+
         <div class="row">
             
             <div class="col-12 grid-margin">
@@ -41,7 +87,7 @@
                                     <td>{{$value->working_day}}</td>
                                     <td>{{$value->in_time}}</td>
                                     <td>{{$value->out_time}}</td>
-                                    <td>{{$value->type}}</td>
+                                    <td>{{$roles[$value->type] ?? 'Unknown'}}</td>
 						    	<td>
                                     <div class="d-flex gap-3">
                                         <a href="{{ route('pages.updateEmployee',['id'=>$value->id]) }}" class="btn btn-primary"> Edit </a>
@@ -59,7 +105,7 @@
                         </table>
                     </div>
                     @else
-                    <h3 align="center">Sorry No appointment Found</h3>
+                    <h3 align="center">Sorry No Data Found</h3>
                     @endif
                 </div>
             </div>

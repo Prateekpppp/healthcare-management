@@ -11,10 +11,10 @@ class InventoryController extends Controller
      * Display a listing of the resource.
      */
     
-    public function index()
+    public function index(Request $request)
     {
         //
-        $data = Inventory::orderBy('id','desc')->get();
+        $data = Inventory::filter($request->all())->get();
         return view('inventories.index' , compact('data'));
     }
     

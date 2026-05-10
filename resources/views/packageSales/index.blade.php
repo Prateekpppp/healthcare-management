@@ -54,7 +54,7 @@
                         </table>
                     </div>
                     @else
-                    <h3 align="center">Sorry No Diseases Found</h3>
+                    <h3 align="center">Sorry No Packages Found</h3>
                     @endif
                 </div>
             </div>

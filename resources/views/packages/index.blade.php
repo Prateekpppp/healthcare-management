@@ -8,10 +8,43 @@
         <div class="row">
             <div class="col-lg-12 d-flex flex-row justify-content-between align-items-center">
                 <h2 class="page-header">Packages</h2>
-                <a href="{{route('pages.updateMedicine')}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Add New
+                <a href="{{route('pages.updatePackage')}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Add New
                 </a>
             </div>
         </div>
+        
+        <form method="GET" class="card p-3 mb-3 form-group">
+
+            <div class="row g-3">
+                
+                <!-- Name -->
+                <div class="col-md-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" value="{{request('name') ?? ''}}">
+                </div>
+
+                <!-- Description -->
+                <div class="col-md-3">
+                    <label class="form-label">Description</label>
+                    <input type="text" name="description" class="form-control" value="{{request('description') ?? ''}}">
+                </div>
+
+                <!-- Buttons -->
+                <div class="col-md-3 d-flex align-items-end gap-2 pb-3">
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Filter
+                    </button>
+
+                    <a href="{{ url()->current() }}" class="btn btn-secondary w-100">
+                        Reset
+                    </a>
+
+                </div>
+
+            </div>
+
+        </form>
         
         <div class="row">
             

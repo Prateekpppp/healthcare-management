@@ -11,11 +11,11 @@ class Slot extends BaseModel
     // slots belongs to patient and inventory
     public function patient()
     {
-        return $this->belongsTo(Patient::class, 'patient_id');
+        return $this->belongsTo('App\Models\Patient');
     }
 
     public function inventory()
     {
-        return $this->belongsTo(Inventory::class, 'inventory_id');
+        return $this->belongsTo('App\Models\Inventory');
     }
 }

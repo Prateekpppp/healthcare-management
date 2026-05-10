@@ -14,14 +14,16 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if($this->currentUser->role_id == 2){
-          $appointments = Appointment::where('doctor_id',$this->doctor_id);
+          $appointments = Appointment::filter($request->all())
+            ->where('doctor_id',$this->doctor_id);
         } else{
-          $appointments = Appointment::limit(10);
+          $appointments = Appointment::filter($request->all())
+            ->limit(10);
         }
-        $appointments = $appointments->orderBy('id', 'desc')->get();
+        $appointments = $appointments->get();
         $patients = Patient::get();
         $doctors = Doctor::get();
         return view('appointments.appointments', compact('appointments','patients','doctors'));
@@ -142,7 +144,7 @@ class AppointmentController extends Controller
         //return $request->all();
         // $this->validate($request, ['doctor_id'=>'required']);
         if($request->appointment_date) {
-        $request['appointment_date'] = date('Y-m-d', strtotime($request->appointment_date));
+            $request['appointment_date'] = date('Y-m-d', strtotime($request->appointment_date));
             
         }
         if(isset($request->id) && $request->id){
