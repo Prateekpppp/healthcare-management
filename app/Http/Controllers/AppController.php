@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendPatientMailJob;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -83,5 +85,21 @@ class AppController extends Controller
         return response()->json([
             'data' => $items,
         ]);
+    }
+
+    public function sendMail(Request $request)
+    {
+        $patients = Patient::whereNotNull('email')->get();
+
+        foreach ($patients as $patient) {
+
+            SendPatientMailJob::dispatch(
+                $patient->email,
+                $request->subject,
+                $request->message
+            );
+        }
+
+        return back()->with('success', 'Mail queued successfully');
     }
 }

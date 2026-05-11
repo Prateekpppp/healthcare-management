@@ -39,6 +39,7 @@ use App\Http\Controllers\{
     ServicePackageController,
     SlotController
 };
+use App\Jobs\SendPatientMailJob;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 /*
@@ -310,4 +311,16 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::get('trash', [AppController::class,'trash'])->name('app_action.trash');
 
     Route::post('changeStatus', [AppController::class,'changeStatus'])->name('app_action.changeStatus')->withoutMiddleware([VerifyCsrfToken::class]);
+});
+
+Route::post('/send-email', function () {
+    $emailData = request()->validate([
+        'to' => 'required|email',
+        'subject' => 'required',
+        'message' => 'required',
+    ]);
+
+    SendPatientMailJob::dispatch($emailData);
+
+    return redirect('/');
 });
