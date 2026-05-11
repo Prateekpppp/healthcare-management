@@ -14,6 +14,7 @@
             'invoices'=>'Invoice',
             'inventories'=>'Inventory',
             'slots'=>'Slot',
+            'hospitals'=>'Hospital',
           ],
           [
             'index'=>'Dashboard',
@@ -27,6 +28,7 @@
             // 'invoices'=>'Invoice',
             // 'inventories'=>'Inventory',
             // 'slots'=>'Slot',
+            'hospitals'=>'Hospital',
           ],
           [
             'index'=>'Dashboard',

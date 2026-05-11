@@ -12,7 +12,7 @@ class ServiceSale extends BaseModel
 
 public function invoice()
 {
-    return $this->belongsTo('App\Models\Invoice');
+    return $this->hasOne('App\Models\Invoice');
 }
 
 public function service()

@@ -137,6 +137,17 @@
                                     value="{{ $data->total_amount ?? '' }}"
                                     required>
                             </div>
+                            
+                            <div class="col-md-2 form-group">
+                                <label>Discount % :</label>
+
+                                <input type="text"
+                                    name="discount"
+                                    class="form-control"
+                                    id="discount"
+                                    value="{{ $data->discount ?? '' }}"
+                                    required>
+                            </div>
 
                         </div>
 

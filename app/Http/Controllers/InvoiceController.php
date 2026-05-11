@@ -80,6 +80,11 @@ class InvoiceController extends Controller
         
     }
 
+    public function printINvoice(Request $request){
+        $data = Invoice::find($request->id);
+        $hostpital = Hospital::first();
+        return view('invoices.print', compact('data', 'hostpital'));
+    }
     // public function index()
     // {
     //     $services = Service::get();

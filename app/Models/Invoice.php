@@ -36,7 +36,7 @@ class Invoice extends BaseModel
     
     public function serviceSales()
     {
-         return $this->hasMany('App\Models\ServiceSale');
+         return $this->hasOne('App\Models\ServiceSale');
     }
 
     public function opd_sales()
@@ -50,7 +50,7 @@ class Invoice extends BaseModel
     }
       public function packageSales()
     {
-         return $this->hasOne('App\Models\PackageSale');
+         return $this->hasMany('App\Models\PackageSale');
     }
 
      public function invoiceReturns()

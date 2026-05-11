@@ -41,6 +41,7 @@ use App\Http\Controllers\{
 };
 use App\Jobs\SendPatientMailJob;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -187,6 +188,7 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::resource('invoice', InvoiceController::class);
     Route::get('invoices', [InvoiceController::class,'index'])->name('pages.invoices');
     Route::get('updateInvoice', [InvoiceController::class,'updatePage'])->name('pages.updateInvoice');
+    Route::get('printInvoice', [InvoiceController::class,'printInvoice'])->name('pages.printInvoice');
     Route::post('updateInvoice', [InvoiceController::class,'updateData'])->name('post.updateInvoice');
 
 
@@ -199,6 +201,10 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::resource('role', RoleController::class);
 
     // Hospital
+    Route::get('hospitals', [HospitalController::class,'index'])->name('pages.hospitals');
+    Route::get('updateHospital', [HospitalController::class,'updatePage'])->name('pages.updateHospital');
+    Route::post('updateHospital', [HospitalController::class,'updateData'])->name('post.updateHospital');
+
     Route::get('backup', [HospitalController::class, 'backup'])
         ->name('hospital.backup');
 

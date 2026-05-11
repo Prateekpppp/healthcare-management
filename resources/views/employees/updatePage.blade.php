@@ -27,18 +27,6 @@
                         </div>
 
                         <div class="col-md-4 form-group">
-                            <label>Middle Name:</label>
-                            <input type="text" name="middle_name" class="form-control" 
-                                value="{{ $data->middle_name ?? '' }}">
-                        </div>
-
-                        <div class="col-md-4 form-group">
-                            <label>Last Name:</label>
-                            <input type="text" name="last_name" class="form-control" required 
-                                value="{{ $data->last_name ?? '' }}">
-                        </div>
-
-                        <div class="col-md-4 form-group">
                             <label>Email:</label>
                             <input type="email" name="email" class="form-control" 
                                 value="{{ $data->email ?? '' }}">
@@ -55,7 +43,7 @@
                             <select class="form-control" name="type" required>
                                 <option value="">Select</option>
                                 @foreach($roles as $type => $label)
-                                    <option value="{{ $type }}" {{ $data->type == $type ? 'selected' : '' }}>
+                                    <option value="{{ $type }}" {{ isset($data->type) && $data->type == $type ? 'selected' : '' }}>
                                         {{ $label }}
                                     </option>
                                 @endforeach
@@ -142,7 +130,12 @@
                             </select>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 form-group">
+                            <label>Password:</label>
+                            <input type="text" name="password" class="form-control" required 
+                                value="">
+                        </div>
+                        <div class="col-12">
                             <button class="btn btn-primary" type="submit">Submit</button>
                         </div>
                         

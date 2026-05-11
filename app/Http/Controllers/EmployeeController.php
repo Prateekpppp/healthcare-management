@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Department;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -16,6 +18,7 @@ class EmployeeController extends Controller
     public function index(Request $request)
     {
         $data = Employee::filter($request->all())->get();
+
         //$days = explode(',',$employees->working_day);
         return view('employees.index' , compact('data'));
 
@@ -39,16 +42,28 @@ class EmployeeController extends Controller
 
     public function updateData(Request $request)
     {
+        $user = new Request();
+        $user->name = $request->first_name;
+        $user->email = $request->email;
+        $user->role_id = $request->type;
+        if($request->password){
+            $user->password = Hash::make($request->password);
+        } else{
+            $user->password = '';
+        }
+
         if(isset($request->id) && $request->id){
 
             $data = Employee::find($request->id);
             // dd($data);
             $data->update($request->all());
+            User::update($user);
             return back()->with('success', 'Data updated successfully');
 
         } else{
 
             Employee::create($request->all());
+            User::create($user);
             return back()->with('success', 'Data saved Successfully.'); 
 
         }
