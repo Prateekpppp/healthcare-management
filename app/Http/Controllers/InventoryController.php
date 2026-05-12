@@ -14,7 +14,7 @@ class InventoryController extends Controller
     public function index(Request $request)
     {
         //
-        $data = Inventory::filter($request->all())->get();
+        $data = Inventory::filter($request->all())->paginate(10);
         return view('inventories.index' , compact('data'));
     }
     

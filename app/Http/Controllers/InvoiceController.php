@@ -35,10 +35,11 @@ class InvoiceController extends Controller
         $services = Service::get();
         $patient = isset($request->patient_id) ? Patient::find($request->patient_id) : null;
         if($patient){
-            $data = Invoice::where('patient_id', $request->patient_id)->get();
+            $data = Invoice::where('patient_id', $request->patient_id);
         } else {
-            $data = Invoice::filter($request->all())->get();
+            $data = Invoice::filter($request->all());
         }
+        $data = $data->paginate(10);
         // dd($data);
         return view('invoices.index' , compact('data', 'patient','patients','services'));
     }

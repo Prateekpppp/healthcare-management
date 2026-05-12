@@ -17,7 +17,7 @@ class EmployeeController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Employee::filter($request->all())->get();
+        $data = Employee::filter($request->all())->paginate(10);
 
         //$days = explode(',',$employees->working_day);
         return view('employees.index' , compact('data'));

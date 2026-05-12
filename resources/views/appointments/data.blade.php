@@ -1,5 +1,5 @@
 
-					@if($appointments->count())
+					@if($data->count())
                     <div class="table-responsive">
                         <table class="table center-aligned-table">
                             <thead>
@@ -26,7 +26,7 @@
                                     ];
                                     $cnt = 0;
                                 @endphp
-						        @foreach($appointments as $key => $appointment)
+						        @foreach($data as $key => $appointment)
 						    	<tr>
 						    	<td>{{$cnt+=1}}</td>
 						    	{{-- <td>{{$appointment->name}}</td> --}}

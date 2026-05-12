@@ -22,17 +22,17 @@ class DashboardController extends Controller
         // dd($user);
         
       	$invoices = Invoice::where('user_id', $user)->whereDate('created_at', '=', date('Y-m-d'))->get();
-      	$invoices = Invoice::limit(10)->get();
+      	$invoices = Invoice::paginate(10);
         $patients = Patient::get();
         $appointments = Appointment::whereDate('appointment_date', '=', date('Y-m-d'))->get();
         if($this->currentUser->role_id == 2){
-          $appointments = Appointment::where('doctor_id',$this->doctor_id)->limit(10)->get();
+          $appointments = Appointment::where('doctor_id',$this->doctor_id)->paginate(10)->get();
         } else{
-          $appointments = Appointment::limit(10)->get();
+          $appointments = Appointment::paginate(10);
         }
         // dd($this->currentUser->id);
         $opds = OpdSales::whereDate('created_at' , '=', date('Y-m-d'))->get();
-        $opds = OpdSales::limit(10)->get();
+        $opds = OpdSales::paginate(10);
       	//return $invoices;
       	$total['sub_total'] = $invoices->sum('sub_total');
       	$total['discount'] = $invoices->sum('discount');

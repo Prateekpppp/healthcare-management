@@ -57,7 +57,7 @@
                                 <option value="">-- Select Time --</option>
 
                                 @for ($time = $start; $time <= $end; $time += $interval)
-                                    <option {{ isset($data->time) && $data->time == strtotime($time) ? 'selected' : '' }} value="{{ strtotime($time) }}">
+                                    <option {{ isset($data->time) && $data->time == $time ? 'selected' : '' }} value="{{ $time }}">
                                         {{ date('h:i A', $time) }}
                                     </option>
                                 @endfor

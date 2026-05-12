@@ -26,9 +26,9 @@ class PatientController extends Controller
                 $q->where('doctor_id', $doctorId);
             });
         } else{
-          $data = Patient::filter($request->all())->limit(10);
+          $data = Patient::filter($request->all());
         }
-        $data = $data->get();
+        $data = $data->paginate(10);
         return view('patients.index' , compact('data','diseases'));
 
         //

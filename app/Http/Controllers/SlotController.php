@@ -26,7 +26,7 @@ class SlotController extends Controller
         $inventories = Inventory::get();
         $patients = Patient::get();
 
-        $data = Slot::filter($request->all())->get();
+        $data = Slot::filter($request->all())->paginate(10);
         // dd($data[0]->service->name);
         return view('slots.index' , compact('data', 'patient','fillables', 'inventories', 'patients'));
     }

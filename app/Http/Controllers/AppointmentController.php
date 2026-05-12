@@ -20,13 +20,12 @@ class AppointmentController extends Controller
           $appointments = Appointment::filter($request->all())
             ->where('doctor_id',$this->doctor_id);
         } else{
-          $appointments = Appointment::filter($request->all())
-            ->limit(10);
+          $appointments = Appointment::filter($request->all());
         }
-        $appointments = $appointments->get();
+        $data = $appointments->paginate(10);
         $patients = Patient::get();
         $doctors = Doctor::get();
-        return view('appointments.appointments', compact('appointments','patients','doctors'));
+        return view('appointments.appointments', compact('data','patients','doctors'));
         //
     }
 

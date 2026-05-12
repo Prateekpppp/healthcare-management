@@ -22,7 +22,7 @@ class doctorController extends Controller
      */
     public function index()
     {
-        $data = Doctor::all();
+        $data = Doctor::paginate(10);
         //$days = explode(',',$doctors->working_day);
         return view('doctors.index' , compact('data'));
 

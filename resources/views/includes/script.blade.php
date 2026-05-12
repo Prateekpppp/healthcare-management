@@ -73,8 +73,47 @@
         });
 
         $(document).ready(function () {
-            $('.selectpicker').selectpicker({
-                liveSearch: true
-            });
+            // $('.selectpicker').selectpicker({
+            //     liveSearch: true
+            // });
+
+            @if(method_exists($data, 'links'))
+                @php
+                    $page = $request->page ?? 1;
+                @endphp
+            let pagination = `<nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+
+                                    <!-- Previous Button -->
+                                    <li class="page-item {{!isset($request->page) || $page-1 <= 1 ? 'disabled' : ''}}">
+                                        <a class="page-link" href="{{ $page-1 > 1 ? route(request()->route()->getName(), ['page' => $page-1]) : '#' }}" tabindex="-1">
+                                            Previous
+                                        </a>
+                                    </li>
+
+                                    @php
+                                    $i = 1;
+                                    @endphp
+                                    @for($i = 1; $i <= $data->lastPage(); $i++)
+                                    <!-- Page Numbers -->
+                                    <li class="page-item ml-1 {{ isset($request->page) && $request->page == $i ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ route(request()->route()->getName(), ['page' => $i]) }}">{{$i}}</a>
+                                    </li>
+                                    @endfor
+
+                                    <!-- Next Button -->
+                                    <li class="page-item ml-1">
+                                        <a class="page-link" href="{{ route(request()->route()->getName(), ['page' => $page+1]) }}">
+                                            Next
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </nav>`;
+
+                            
+            $('.table-responsive').after(pagination);
+            @endif
+
         });
 </script>

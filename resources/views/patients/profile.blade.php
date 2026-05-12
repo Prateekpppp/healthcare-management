@@ -26,37 +26,76 @@
         <!-- LEFT SIDE: BASIC INFO -->
         <div class="col-md-4">
 
+            @if(
+                $data->email ||
+                $data->phone ||
+                $data->gender ||
+                $data->marital_status ||
+                $data->birth_date ||
+                $data->age
+            )
             <div class="card mb-3">
                 <div class="card-header">
                     Basic Information
                 </div>
+
                 <div class="card-body">
 
-                    <p><strong>Name:</strong>
+                    @if($data->first_name)
+                    <p>
+                        <strong>Name:</strong>
                         {{ $data->first_name ?? '' }}
-                        {{ $data->middle_name ?? '' }}
-                        {{ $data->last_name ?? '' }}
                     </p>
+                    @endif
 
-                    <p><strong>Email:</strong> {{ $data->email ?? '-' }}</p>
-                    <p><strong>Phone:</strong> {{ $data->phone ?? '-' }}</p>
-                    <p><strong>Gender:</strong> {{ $data->gender ?? '-' }}</p>
-                    <p><strong>Marital Status:</strong> {{ $data->marital_status ?? '-' }}</p>
-                    <p><strong>Date of Birth:</strong> {{ $data->birth_date ?? '-' }}</p>
-                    <p><strong>Age:</strong> {{ $data->age ?? '-' }}</p>
+                    @if($data->email)
+                    <p><strong>Email:</strong> {{ $data->email }}</p>
+                    @endif
+
+                    @if($data->phone)
+                    <p><strong>Phone:</strong> {{ $data->phone }}</p>
+                    @endif
+
+                    @if($data->gender)
+                    <p><strong>Gender:</strong> {{ $data->gender }}</p>
+                    @endif
+
+                    @if($data->marital_status)
+                    <p><strong>Marital Status:</strong> {{ $data->marital_status }}</p>
+                    @endif
+
+                    @if($data->birth_date)
+                    <p><strong>Date of Birth:</strong> {{ $data->birth_date }}</p>
+                    @endif
+
+                    @if($data->age)
+                    <p><strong>Age:</strong> {{ $data->age }}</p>
+                    @endif
+                    
+                    @if($data->disease->name)
+                    <p><strong>Disease:</strong> {{ $data->disease->name }}</p>
+                    @endif
 
                 </div>
             </div>
+            @endif
 
-            <div class="card mb-3">
+            <div class="card mb-3 d-none">
                 <div class="card-header">
                     Medical Information
                 </div>
                 <div class="card-body">
+                    @if($data->blood_group)
+                    <p><strong>Blood Group:</strong> {{ $data->blood_group }}</p>
+                    @endif
 
-                    <p><strong>Blood Group:</strong> {{ $data->blood_group ?? '-' }}</p>
-                    <p><strong>Occupation:</strong> {{ $data->occupation ?? '-' }}</p>
-                    <p><strong>Description:</strong> {{ $data->description ?? '-' }}</p>
+                    @if($data->occupation)
+                    <p><strong>Occupation:</strong> {{ $data->occupation }}</p>
+                    @endif
+
+                    @if($data->description)
+                    <p><strong>Description:</strong> {{ $data->description }}</p>
+                    @endif
 
                 </div>
             </div>
@@ -66,21 +105,31 @@
         <!-- RIGHT SIDE: ADDRESS + RELATIVE -->
         <div class="col-md-8">
 
-            <div class="card mb-3">
+            <div class="card mb-3 d-none">
                 <div class="card-header">
                     Address Details
                 </div>
                 <div class="card-body">
+                    @if($data->country)
+                    <p><strong>Country:</strong> {{ $data->country }}</p>
+                    @endif
 
-                    <p><strong>Country:</strong> {{ $data->country ?? '-' }}</p>
-                    <p><strong>State:</strong> {{ $data->state ?? '-' }}</p>
-                    <p><strong>District:</strong> {{ $data->district ?? '-' }}</p>
-                    <p><strong>Location:</strong> {{ $data->location ?? '-' }}</p>
+                    @if($data->state)
+                    <p><strong>State:</strong> {{ $data->state }}</p>
+                    @endif
+
+                    @if($data->district)
+                    <p><strong>District:</strong> {{ $data->district }}</p>
+                    @endif
+
+                    @if($data->location)
+                    <p><strong>Location:</strong> {{ $data->location }}</p>
+                    @endif
 
                 </div>
             </div>
 
-            <div class="card mb-3">
+            <div class="card mb-3 d-none">
                 <div class="card-header">
                     Emergency / Relative Details
                 </div>
@@ -96,6 +145,17 @@
             <div class="card mb-3">
                 <div class="card-header">
                     Patient Appointment History
+                </div>
+                @php
+                    $appointments = $data->appointments;
+                @endphp
+                    @include('appointments.data')
+            </div>
+            
+            <!-- Service HISTORY PLACEHOLDER -->
+            <div class="card mb-3 d-none">
+                <div class="card-header">
+                    Patient Service History
                 </div>
                 <div class="card-body table-responsive">
 

@@ -29,7 +29,7 @@
     <script src="{{ asset('assets') }}/js/file-upload.js"></script>
   <script src="{{ asset('assets') }}/vendors/select2/select2.min.js"></script>
   <script src="{{ asset('assets') }}/js/bootstrap.bundle.min.js"></script>
-  <script src="{{ asset('assets') }}/js/bootstrap-select.min.js"></script>
+  {{-- <script src="{{ asset('assets') }}/js/bootstrap-select.min.js"></script> --}}
   <script src="{{ asset('assets') }}/js/select2.js"></script>
   <script src="{{ asset('assets') }}/vendors/datatables.net/jquery.dataTables.js"></script>
   <script src="{{ asset('assets') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>

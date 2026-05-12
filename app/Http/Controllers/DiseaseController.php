@@ -13,7 +13,7 @@ class DiseaseController extends Controller
     public function index(Request $request)
     {
         //
-        $data = Disease::filter($request->all())->get();
+        $data = Disease::filter($request->all())->paginate(10);
         return view('diseases.index' , compact('data'));
     }
 

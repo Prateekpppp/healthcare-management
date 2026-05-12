@@ -20,7 +20,7 @@ class ServiceController extends Controller
     public function index(Request $request)
     {
         //
-        $data = Service::filter($request->all())->get();
+        $data = Service::filter($request->all())->paginate(10);
         return view('services.index' , compact('data'));
     }
     

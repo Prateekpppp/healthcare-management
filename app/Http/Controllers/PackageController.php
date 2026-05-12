@@ -20,7 +20,7 @@ class PackageController extends Controller
     public function index(Request $request)
     {
         //
-        $data = Package::filter($request->all())->get();
+        $data = Package::filter($request->all())->paginate(10);
         return view('packages.index' , compact('data'));
     }
     
