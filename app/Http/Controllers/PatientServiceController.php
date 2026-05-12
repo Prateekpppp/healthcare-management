@@ -13,9 +13,9 @@ class PatientServiceController extends Controller
 
     public function index(Request $request)
     {
-        $data = PatientService::where('patient_id', $request->id)->get();
-        $patient = Patient::find($request->id);
-        // dd($data[0]->service->name);
+        $data = PatientService::where('patient_id', $request->patient_id)->get();
+        $patient = Patient::find($request->patient_id);
+        // dd($patient->patientservices);
         return view('patient_services.index' , compact('data', 'patient'));
     }
     
@@ -25,8 +25,10 @@ class PatientServiceController extends Controller
         $patient = Patient::find($request->patient_id);
         $appointments = Appointment::filter($request->all())->get();
 
-        if(isset($request->id) && $request->id){
-            $data = PatientService::find($request->id);
+        // dd($patient->patientservices->service_id);
+        $data = PatientService::filter($request->all())->first();
+
+        if($data || (isset($request->id) && $request->id)){
             // dd($data);
             return view('patient_services.updatePage', compact('data', 'services', 'patient', 'appointments'));
 
@@ -44,15 +46,18 @@ class PatientServiceController extends Controller
             $data = PatientService::find($request->id);
             // dd($data);
             $data->update($request->all());
-            return back()->with('success', 'Data updated successfully');
+            // return back()->with('success', 'Data updated successfully');
 
         } else{
 
-            PatientService::create($request->all());
-            return back()->with('success', 'Data saved Successfully.'); 
+            $data = PatientService::create($request->all());
+            // return back()->with('success', 'Data saved Successfully.');
 
         }
-        
+        $service = Service::find($data->service_id);
+        // dd($service->service_packages);
+        return view('patient_services.print', compact('data','service'));
+
     }
     
 }

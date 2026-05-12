@@ -27,7 +27,7 @@ class Service extends BaseModel
     
     public function service_packages()
     {
-        return $this->belongsToMany('App\Models\ServicePackage');
+        return $this->hasMany('App\Models\ServicePackage');
     }
 
     

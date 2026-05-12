@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12 d-flex flex-row justify-content-between align-items-center">
                 <h2 class="page-header">Services</h2>
-                <a href="{{route('pages.updatePatientService',['patient_id' => $patient->id])}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Add New
+                <a href="{{route('pages.updatePatientService',['patient_id' => $request->patient_id])}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Add New
                 </a>
             </div>
         </div>
@@ -23,6 +23,7 @@
                             <thead>
                                 <tr class="bg-light">
                                     <th>ID</th>
+                                    <th>Patient</th>
                                     <th>Service</th>
                                     <th>Price</th>
                                     <th>Action</th>
@@ -35,11 +36,12 @@
 						        @foreach($data as $key => $value)
 						    	<tr>
 						    	<td>{{$cnt+=1}}</td>
+						    	<td>{{$value->patient->first_name}}</td>
 						    	<td>{{$value->service->name}}</td>
 						    	<td>{{$value->service->amount}}</td>
 						    	<td>
                                     <div class="d-flex gap-3">
-                                        <a href="{{ route('pages.updatePatientService',['id'=>$value->id,'patient_id'=>$patient->id]) }}" class="edit-appointment btn btn-primary"> Edit </a>
+                                        <a href="{{ route('pages.updatePatientService',['id'=>$value->id,'patient_id'=>$patient->id,'appointment_id'=>$value->appointment_id]) }}" class="edit-appointment btn btn-primary"> Edit </a>
                                         @permission
                                         <a href="{{route('app_action.trash',['model'=>'Service','id'=>$value->id])}}" class="delete-modal btn btn-danger"
                                         data-info="{{$value->id}}" id="deleteConfirm">

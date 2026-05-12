@@ -36,7 +36,7 @@ class Patient extends BaseModel
     
     public function patientservices()
     {
-        return $this->hasMany('App\Models\PatientService');
+        return $this->hasOne('App\Models\PatientService');
     }
 
     public function slots()

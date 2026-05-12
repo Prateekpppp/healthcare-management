@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <div class="col-lg-12 d-flex flex-row justify-content-between align-items-center">
                     <h2 class="page-header">Services</h2>
-                    <a href="{{route('pages.patientServices',['id' => $patient->id])}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> All Service
+                    <a href="{{route('pages.patientServices',['patient_id' => $patient->id])}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> All Service
                     </a>
                 </div>
             </div>
@@ -28,7 +28,7 @@
 
                         <div class=" col-md-4 form-group">
                             <label>Patient:</label>
-                            <input type="text" name="name" class="form-control" id="patient" value="{{$patient->first_name}} {{$patient->middle_name}} {{$patient->last_name}}" disabled>
+                            <input type="text" name="name" class="form-control" id="patient" value="{{$patient->first_name}}" disabled>
                         </div>
                         
                         <div class=" col-md-4 form-group">
@@ -41,7 +41,7 @@
                             <select name="service_id" class="form-control" required id="service_id">
                                     <option value="">Select</option>
                                     @foreach($services as $service)
-                                        <option {{isset($data->service_id) && $data->service_id == $service->id ? 'selected' : ''}} value="{{$service->id}}">{{ $service->name}}</option>
+                                        <option {{(isset($data->service_id) && $data->service_id == $service->id) || (isset($patient->patientservices->service_id) && $patient->patientservices->service_id == $service->id) ? 'selected' : ''}} value="{{$service->id}}">{{ $service->name}}</option>
                                     @endforeach
                             </select>
                         </div>
@@ -58,6 +58,21 @@
                             </select>
                         </div>
 
+                        <div class=" col-md-4 form-group discount_section" style="display: {{ isset($data->discount) && $data->discount ? 'block' : 'none' }};">
+                            <label>Discount:</label>
+                            <input type="text" name="discount" class="form-control" id="discount" value="{{$data->discount ?? ''}}">
+                        </div>
+                        
+                        <div class=" col-md-4 form-group discount_section" style="display: {{ isset($data->discount) && $data->discount ? 'block' : 'none' }};">
+                            <label>Discount Description:</label>
+                            <input type="text" name="discount_description" class="form-control" id="discount_description" value="{{$data->discount_description ?? ''}}">
+                        </div>
+                        <div class=" col-md-4 form-group">
+                            <label>Apply Discount:</label>
+                            <div class="time">
+                                <input type="checkbox" name="apply_discount" class="form-checkbox apply_discount" id="apply_discount" {{ isset($data->discount) && $data->discount ? 'checked' : '' }}>
+                            </div>
+                        </div>
                         {{-- <div class=" col-md-4 form-group">
                             <label>Price:</label>
                             <input type="text" name="amount" class="form-control" id="amount" required="" value="{{$data->amount ?? ''}}">
