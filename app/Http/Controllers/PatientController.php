@@ -146,14 +146,16 @@ class PatientController extends Controller
             $data = Patient::find($request->id);
             // dd($data);
             $data->update($request->all());
-            return back()->with('success', 'Data updated successfully');
+            // return back()->with('success', 'Data updated successfully');
 
         } else{
 
-            Patient::create($request->all());
-            return back()->with('success', 'Data saved Successfully.'); 
+            $data = Patient::create($request->all());
+            // return back()->with('success', 'Data saved Successfully.'); 
 
         }
+        // return back()->with('success', 'Data updated successfully');
+        return view('patients.profile' , compact('data'));
         
     }
 

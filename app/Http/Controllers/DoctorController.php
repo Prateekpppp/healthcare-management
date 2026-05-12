@@ -168,13 +168,13 @@ class doctorController extends Controller
 
     public function updatePage(Request $request)
     {
+        $employees = Employee::get();
         if(isset($request->id) && $request->id){
             $data = Doctor::find($request->id);
             // dd($data);
-            return view('doctors.updatePage', compact('data'));
+            return view('doctors.updatePage', compact('data','employees'));
 
         } else{
-            $employees = Employee::where('type', 'Doctor')->get();
             return view('doctors.updatePage', compact('employees'));
 
         }
@@ -183,6 +183,10 @@ class doctorController extends Controller
 
     public function updateData(Request $request)
     {
+        $data = $request->validate([
+            'employee_id' => 'required|exists:employees,id|unique:doctors',
+        ]);
+        // dd($data);
         $tax = Hospital::first()->tax_percent;
         if ($request->with_tax) {
             $tax_cal = 100 + $tax;

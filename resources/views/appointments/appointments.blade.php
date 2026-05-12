@@ -31,8 +31,8 @@
                         @endforeach
                     </select>
                 </div>
-                
-                <!-- Service -->
+                @if($currentUser->role_id != 2)
+                <!-- Doctors -->
                 <div class="col-md-3">
                     <label class="form-label">Doctor</label>
                     <select name="doctor_id" class="form-control select">
@@ -46,6 +46,7 @@
                         @endforeach
                     </select>
                 </div>
+                @endif
                 
                 <!-- Date -->
                 <div class="col-md-3">

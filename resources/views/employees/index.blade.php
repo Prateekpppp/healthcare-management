@@ -71,7 +71,7 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Contact</th>
-                                    <th>Working Days</th>
+                                    {{-- <th>Working Days</th> --}}
                                     <th>In-time</th>
                                     <th>Out-time</th>
                                     <th>Type</th>
@@ -84,7 +84,7 @@
                                     <td>{{ $value->id}}</td>
                                     <td>{{$value->first_name}} {{$value->middle_name}} {{$value->last_name}}</td>
                                     <td>{{$value->phone}}</td>
-                                    <td>{{$value->working_day}}</td>
+                                    {{-- <td>{{$value->working_day}}</td> --}}
                                     <td>{{$value->in_time}}</td>
                                     <td>{{$value->out_time}}</td>
                                     <td>{{$roles[$value->type] ?? 'Unknown'}}</td>

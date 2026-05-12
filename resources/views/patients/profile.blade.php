@@ -103,7 +103,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Appointment</th>
+                                {{-- <th>Appointment</th> --}}
                                 <th>Doctor</th>
                                 <th>Description</th>
                                 <th>Time</th>
@@ -117,8 +117,8 @@
                                 @foreach($data->appointments()->get() as $appointment)
                                     <tr>
                                         <td>{{$appointment->id}}</td>
-                                        <td>{{$appointment->name}}</td>
-                                        <td>{{$appointment->doctor->employee->first_name}} {{$appointment->doctor->employee->last_name}}</td>
+                                        {{-- <td>{{$appointment->name}}</td> --}}
+                                        <td>{{$appointment->doctor->employee->first_name}}</td>
                                         <td>{{$appointment->description}}</td>
                                         <td>{{$appointment->time}}</td>
                                         <td>

@@ -148,15 +148,17 @@ class AppointmentController extends Controller
             
         }
         if(isset($request->id) && $request->id){
-            $appointment = Appointment::find($request->id);
-            $appointment->update($request->all());
-            return back()->with('success', 'Appointment updated successfully');
+            $data = Appointment::find($request->id);
+            $data->update($request->all());
+            // return back()->with('success', 'Appointment updated successfully');
 
         } else{
-            Appointment::create($request->all());
-            return back()->with('success', 'Appointment saved Successfully.'); 
+            $data = Appointment::create($request->all());
+            // return back()->with('success', 'Appointment saved Successfully.'); 
 
         }
+        
+        return view('appointments.print', compact('data'));
         
         //
     }
@@ -166,10 +168,17 @@ class AppointmentController extends Controller
         $doctor = Doctor::find($request->id);
 
         return response()->json([
-            'fee' => $doctor->consultation_fee ?? 0
+            'fee' => $doctor->fee ?? 0
         ]);
     }
 
+    public function print(Request $request){
+        $data = Appointment::find($request->id);
+        // dd($data->patient);
+        $data->invoice_no = $this->hospital->invoice_prefix . $data->id;
+        return view('appointments.print', compact('data'));
+    }
+    
     /**
      * Remove the specified resource from storage.
      *

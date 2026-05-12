@@ -24,6 +24,11 @@ class AppController extends Controller
         $model = 'App\\Models\\' . $request->model;
         $model = app($model);
         $item = $model->where('id',$request->id)->update(['status'=>$request->status]);
+
+        return response()->json([
+            'message'=> 'Status Updated Successfully',
+            'response_code'=> '200'
+        ]);
         return back()->with('success', 'Status Updated Successfully.');
     }
 

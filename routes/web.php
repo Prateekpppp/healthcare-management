@@ -97,6 +97,7 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::get('updateAppointment', [AppointmentController::class,'updatePage'])->name('pages.updateAppointment');
     Route::post('updateAppointment', [AppointmentController::class,'updateAppointment'])->name('post.updateAppointment');
     Route::get('getDoctorFee', [AppointmentController::class, 'getDoctorFee'])->name('get.getDoctorFee');
+    Route::get('printAppointment', [AppointmentController::class,'print'])->name('pages.printAppointment');
 
     // Doctor
     Route::resource('doctor', DoctorController::class);
@@ -188,7 +189,7 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::resource('invoice', InvoiceController::class);
     Route::get('invoices', [InvoiceController::class,'index'])->name('pages.invoices');
     Route::get('updateInvoice', [InvoiceController::class,'updatePage'])->name('pages.updateInvoice');
-    Route::get('printInvoice', [InvoiceController::class,'printInvoice'])->name('pages.printInvoice');
+    Route::get('printInvoice', [InvoiceController::class,'print'])->name('pages.printInvoice');
     Route::post('updateInvoice', [InvoiceController::class,'updateData'])->name('post.updateInvoice');
 
 

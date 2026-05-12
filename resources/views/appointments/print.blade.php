@@ -21,43 +21,18 @@
                                 $packageSubtotal = 0;
                             @endphp
                             <tr>
-                                <td colspan="3" style="height:40px;"> Service</td>
-                            </tr>
-                            <tr>
-                                <td>{{$data->service->name ?? '--'}}</td>
-                                <td>--</td>
-                                <td>{{$data->service->amount ?? '--'}}</td>
+                                <td>{{$data->patient->first_name ?? '--'}}</td>
+                                <td>{{$data->description ?? '--'}}</td>
+                                <td>{{$data->doctor->fee ?? '--'}}</td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td colspan="" style="height:40px;"> Service total</td>
-                                <td colspan="" style="height:40px;"> {{$data->service->amount ?? '--'}}</td>
+                                <td colspan="" style="height:40px;"> Total</td>
+                                <td colspan="" style="height:40px;"> {{$data->doctor->fee ?? '--'}}</td>
                             </tr>
                             @php
-                                $subTotal += $data->service->amount ?? 0;
+                                $subTotal += $data->doctor->fee ?? 0;
                             @endphp
-
-                            @if($data->packageSales->count() > 0)
-                            <tr>
-                                <td colspan="3" style="height:40px;"> Packages</td>
-                            </tr>
-                            @foreach($data->packageSales as $packageSale)
-                            <tr>
-                                <td>{{$packageSale->package->name ?? '--'}}</td>
-                                <td>--</td>
-                                <td colspan="2">{{$packageSale->package->price ?? '--'}}</td>
-                            </tr>
-                            @php
-                                $packageSubtotal += $packageSale->package->price ?? 0;
-                                $subTotal += $packageSubtotal ?? 0;
-                            @endphp
-                            @endforeach
-                            <tr>
-                                <td></td>
-                                <td colspan="" style="height:40px;"> Package total</td>
-                                <td colspan="" style="height:40px;"> {{$packageSubtotal ?? '--'}}</td>
-                            </tr>
-                            @endif
 
                         </tbody>
 
@@ -73,10 +48,10 @@
                             Notes
                         </div>
 
-                        <div class="small-text">
+                        {{-- <div class="small-text">
                             Thank you for your business. <br>
                             Please make payment before the due date.
-                        </div>
+                        </div> --}}
 
                     </div>
 

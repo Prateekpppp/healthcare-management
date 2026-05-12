@@ -21,21 +21,21 @@
                         <input name="id" type="hidden" class="form-control" id="id" value="{{$data->id}}" >
                         @endif
                         <div class="col-md-4 form-group">
-                            <label>First Name:</label>
-                            <input type="text" name="first_name" class="form-control" required 
-                                value="{{ $data->first_name ?? '' }}">
+                            <label>Name:</label>
+                            <input type="text" name="first_name" class="form-control" 
+                                value="{{ $data->first_name ?? '' }}" required>
                         </div>
 
                         <div class="col-md-4 form-group">
                             <label>Email:</label>
                             <input type="email" name="email" class="form-control" 
-                                value="{{ $data->email ?? '' }}">
+                                value="{{ $data->email ?? '' }}" required>
                         </div>
 
                         <div class="col-md-4 form-group">
                             <label>Phone:</label>
-                            <input type="text" name="phone" class="form-control" required 
-                                value="{{ $data->phone ?? '' }}">
+                            <input type="text" name="phone" class="form-control" 
+                                value="{{ $data->phone ?? '' }}" required>
                         </div>
 
                         <div class="col-md-4 form-group">
@@ -52,7 +52,7 @@
 
                         <div class="col-md-4 form-group">
                             <label>Address:</label>
-                            <textarea name="address" class="form-control" rows="3" required>
+                            <textarea name="address" class="form-control" rows="3">
                                 {{ $data->address ?? '' }}
                             </textarea>
                         </div>
@@ -85,7 +85,7 @@
                             </textarea>
                         </div>
 
-                        <div class="col-md-4 form-group">
+                        {{-- <div class="col-md-4 form-group">
                             <label>Working Day:</label>
                             <select name="working_day[]" class="form-control select2" multiple>
                                 @php
@@ -100,23 +100,23 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-4 form-group">
                             <label>In-Time:</label>
-                            <input type="text" name="in_time" class="form-control timepicker" required 
+                            <input type="text" name="in_time" class="form-control timepicker" 
                                 value="{{ $data->in_time ?? '' }}">
                         </div>
 
                         <div class="col-md-4 form-group">
                             <label>Out-Time:</label>
-                            <input type="text" name="out_time" class="form-control timepicker" required 
+                            <input type="text" name="out_time" class="form-control timepicker" 
                                 value="{{ $data->out_time ?? '' }}">
                         </div>
 
-                        <div class="col-md-4 form-group">
+                        {{-- <div class="col-md-4 form-group">
                             <label>Department:</label>
-                            <select name="department_id" class="form-control" required>
+                            <select name="department_id" class="form-control">
                                 <option value="{{ $data->department_id ?? '' }}">
                                     {{ $data->department->name ?? 'Select Department' }}
                                 </option>
@@ -128,11 +128,11 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-4 form-group">
                             <label>Password:</label>
-                            <input type="text" name="password" class="form-control" required 
+                            <input type="text" name="password" class="form-control" 
                                 value="">
                         </div>
                         <div class="col-12">
@@ -159,6 +159,16 @@
                 allowClear: true,
                 width: '100%'
             });
+        });
+        $('form').submit(function (e) {
+            let workingDays = $('#working_day').val();
+            
+            console.log('workingDays--',);
+            
+            $('#working_day').val(workingDays.join(','));
+            e.preventDefault();
+            // this.submit();
+
         });
     </script>
 @endsection

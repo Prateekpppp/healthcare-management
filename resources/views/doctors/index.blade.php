@@ -25,7 +25,7 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Phone</th>
-                                    <th>Department</th>
+                                    {{-- <th>Department</th> --}}
                                     <th>OPD Fee</th>
                                     <th>Action</th>
                                 </tr>
@@ -39,7 +39,7 @@
 						    	<td>{{$cnt+=1}}</td>
 						    	<td>{{$value->employee->first_name}} {{$value->employee->middle_name}} {{$value->employee->last_name}}</td>
                                 <td>{{ $value->employee->phone}}</td>
-                                <td>{{$value->employee->department->name}}</td>
+                                {{-- <td>{{$value->employee->department->name}}</td> --}}
                                 <td>${{$value->fee}}</td>
 						    	<td>
                                     <div class="d-flex gap-3">

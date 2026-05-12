@@ -8,10 +8,10 @@
         </div>
     </div>
 
-   @include('includes/app_toast')
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    @include('includes/app_toast')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ asset('assets') }}/vendors/js/vendor.bundle.base.js"></script>
     <script src="{{ asset('assets') }}/vendors/chart.js/chart.umd.js"></script>
     <script src="{{ asset('assets') }}/vendors/progressbar.js/progressbar.min.js"></script>
@@ -28,6 +28,8 @@
     <script src="{{ asset('assets') }}/js/dashboard.js"></script>
     <script src="{{ asset('assets') }}/js/file-upload.js"></script>
   <script src="{{ asset('assets') }}/vendors/select2/select2.min.js"></script>
+  <script src="{{ asset('assets') }}/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('assets') }}/js/bootstrap-select.min.js"></script>
   <script src="{{ asset('assets') }}/js/select2.js"></script>
   <script src="{{ asset('assets') }}/vendors/datatables.net/jquery.dataTables.js"></script>
   <script src="{{ asset('assets') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
@@ -42,11 +44,17 @@
 </script> --}}
 
 
-@if ($message = Session::get('success'))
 <script>
+    @if ($message = Session::get('success'))
     responseToast("{{$message}}",'bg-success');
+    @elseif ($errors->any())
+    @foreach ($errors->all() as $error)
+    responseToast("{{$error}}",'bg-danger');
+    @endforeach
+     @elseif ($message = Session::get('error'))
+    responseToast("{{$message}}",'bg-danger');
+    @endif
 </script>
-@endif
 
 </body>
 

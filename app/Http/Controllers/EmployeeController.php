@@ -42,28 +42,32 @@ class EmployeeController extends Controller
 
     public function updateData(Request $request)
     {
-        $user = new Request();
-        $user->name = $request->first_name;
-        $user->email = $request->email;
-        $user->role_id = $request->type;
-        if($request->password){
-            $user->password = Hash::make($request->password);
+
+        if(isset($request->password) && $request->password){
+            $request->merge([
+                'password'=> Hash::make($request->password)
+            ]);
         } else{
-            $user->password = '';
+            unset($request->password);
         }
 
+        $request->merge([
+            'name' => $request->first_name,
+            'role_id' => $request->type,
+        ]);
         if(isset($request->id) && $request->id){
 
             $data = Employee::find($request->id);
+            $user = new User();
             // dd($data);
+            $user->update($request->all());
             $data->update($request->all());
-            User::update($user);
             return back()->with('success', 'Data updated successfully');
 
         } else{
 
+            User::create($request->all());
             Employee::create($request->all());
-            User::create($user);
             return back()->with('success', 'Data saved Successfully.'); 
 
         }

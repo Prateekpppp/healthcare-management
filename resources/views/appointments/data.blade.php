@@ -34,7 +34,7 @@
 						    	<td>{{$appointment->doctor->employee->first_name}} {{$appointment->doctor->employee->middle_name}} {{$appointment->doctor->employee->last_name}}</td>
 						    	<td>{{$appointment->doctor->fee}}</td>
 						    	<td>{{$appointment->description}}</td>
-						    	<td>{{$appointment->time}}</td>
+						    	<td>{{date('h i A',$appointment->time)}}</td>
 						    	<td>{{$appointment->appointment_date}}</td>
 								<td> 
 
@@ -60,7 +60,12 @@
 						    	<td>
                                     <div class="d-flex gap-3">
                                         {{-- <a href="{{ route('appointment.edit',$appointment->id) }}" class="edit-appointment btn btn-primary"> Edit </a> --}}
+                                        @if($currentUser->role_id == 2)
+                                        <a href="{{ route('pages.updatePatientService',['patient_id'=>$appointment->patient_id,'appointment_id'=>$appointment->id]) }}" class="edit-appointment btn btn-primary"> Edit </a>
+                                        @else
                                         <a href="{{ route('pages.updateAppointment',['id'=>$appointment->id]) }}" class="edit-appointment btn btn-primary"> Edit </a>
+                                        <a href="{{ route('pages.printAppointment',['id'=>$appointment->id]) }}" class="edit-appointment btn btn-primary"> Print </a>
+                                        @endif
                                         @permission
                                         <a href="{{route('app_action.trash',['model'=>'Appointment','id'=>$appointment->id])}}" class="delete-modal btn btn-danger"
                                         data-info="{{$appointment->id}}" id="deleteConfirm">

@@ -86,9 +86,10 @@
                                 <tr class="bg-light">
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Disease</th>
+                                    <th>Email</th>
                                     <th>Phone</th>
                                     <th>Address</th>
-                                    <th>Email</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -96,10 +97,11 @@
 						        @foreach($data as $key => $value)
 						    	<tr>
                                     <td>{{ $value->id}}</td>
-                                    <td>{{$value->first_name}} {{$value->middle_name}} {{$value->last_name}}</td>
-                                    <td>{{$value->phone}}</td>
-                                    <td>{{$value->district}}, {{$value->location}}</td>
+                                    <td>{{$value->first_name ?? '--'}}</td>
+                                    <td>{{$value->disease->name ?? '--'}}</td>
                                     <td>{{$value->email}}</td>
+                                    <td>{{$value->phone}}</td>
+                                    <td>{{$value->location}}</td>
 						    	<td>
                                     <div class="d-flex gap-3">
                                         <a href="{{ route('patient.show',$value->id) }}" class="btn btn-secondary"> Profile </a>

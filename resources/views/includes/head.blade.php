@@ -15,22 +15,24 @@
    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets') }}/img/logo/favicon.png">
 
 <link rel="stylesheet" href="{{ asset('assets') }}/css/tailwind.min.css">
-<link rel="stylesheet" href="{{ asset('assets') }}/vendors/flag-icon-css/css/flag-icons.min.css">
+{{-- <link rel="stylesheet" href="{{ asset('assets') }}/vendors/flag-icon-css/css/flag-icons.min.css"> --}}
 <link rel="stylesheet" href="{{ asset('assets') }}/vendors/mdi/css/materialdesignicons.min.css">  
 <link rel="stylesheet" href="{{ asset('assets') }}/vendors/font-awesome/css/font-awesome.min.css">  
-<link rel="stylesheet" href="{{ asset('assets') }}/vendors/simple-line-icons/css/simple-line-icons.css">  
+{{-- <link rel="stylesheet" href="{{ asset('assets') }}/vendors/simple-line-icons/css/simple-line-icons.css">   --}}
 <link rel="stylesheet" href="{{ asset('assets') }}/vendors/feather/feather.css">
-<link rel="stylesheet" href="{{ asset('assets') }}/vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet" href="{{ asset('assets') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+{{-- <link rel="stylesheet" href="{{ asset('assets') }}/vendors/css/vendor.bundle.base.css"> --}}
+{{-- <link rel="stylesheet" href="{{ asset('assets') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.css"> --}}
 <link rel="stylesheet" href="{{ asset('assets') }}/vendors/jquery-bar-rating/fontawesome-stars.css">
 <link rel="stylesheet" href="{{ asset('assets') }}/css/vertical-layout-light/style.css">
-  <link rel="stylesheet" href="{{ asset('assets') }}/vendors/icheck/skins/all.css">
-  <link rel="stylesheet" href="{{ asset('assets') }}/vendors/select2/select2.min.css">
+  {{-- <link rel="stylesheet" href="{{ asset('assets') }}/vendors/icheck/skins/all.css"> --}}
+  <link rel="stylesheet" href="{{ asset('assets') }}/css/select2.min.css">
   <link rel="stylesheet" href="{{ asset('assets') }}/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
 <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css">
 <link rel="stylesheet" href="{{ asset('assets') }}/css/app_style.css">
+<link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap-select.min.css">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
 
     @yield('head')
 

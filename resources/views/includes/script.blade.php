@@ -52,4 +52,29 @@
             });
         });
         
+        $('input[name="phone"]').on('input', function () {
+
+            let value = $(this).val();
+
+            value = value
+                .replace(/\D/g, '') // only numbers
+                .slice(0, 10); // max 10 digits
+
+            $(this).val(value);
+
+        });
+
+        $('.apply_discount').on('change', function() {
+            if($(this).is(':checked')){
+                $('.discount_section').show();
+            } else{
+                $('.discount_section').hide();
+            }
+        });
+
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker({
+                liveSearch: true
+            });
+        });
 </script>

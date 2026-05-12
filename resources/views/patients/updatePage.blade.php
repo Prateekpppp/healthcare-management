@@ -77,10 +77,10 @@
 
                         <div class="col-md-4 form-group">
                             <label>Disease:</label>
-                            <select name="disease" class="form-control">
+                            <select name="disease_id" class="form-control" data-live-search="true">
                                 <option value="">Select</option>
                                 @foreach($diseases as $disease)
-                                <option {{isset($data->disease) && $data->disease == $disease ? 'selected' : ''}} value="{{ $disease->name }}">{{ $disease->name }}</option>
+                                <option {{isset($data->disease_id) && $data->disease_id == $disease->id ? 'selected' : ''}} data-tokens="{{ $disease->name }}" value="{{ $disease->id }}">{{ $disease->name }}</option>
                                 @endforeach
                             </select>
                         </div>

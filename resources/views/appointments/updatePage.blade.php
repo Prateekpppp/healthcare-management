@@ -6,8 +6,11 @@
     <div class="col-md-12 main">
        
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 d-flex flex-row justify-content-between align-items-center">
                 <h2 class="page-header">Appointment</h2>
+                <a href="{{route('pages.appointments')}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> 
+                    View All
+                </a>
             </div>
         </div>
         
@@ -23,7 +26,7 @@
                         <div class=" col-md-4 form-group">
                             <label>Patient:</label>
                             <select name="patient_id" class="form-control" id="patient_id">
-                            <option></option>
+                            <option value="">Select</option>
                                 @foreach($patients as $patient)
                                     <option {{isset($data->patient_id) && $data->patient_id == $patient->id ? 'selected' : ''}} value="{{$patient->id}}">{{ $patient->first_name}} {{ $patient->last_name}}</option>
                                 @endforeach
@@ -33,11 +36,10 @@
                         <div class=" col-md-4 form-group">
                             <label>Doctor:</label>
                             <select name="doctor_id" class="form-control doctor_select" required id="doctor_id">
-                                <option>
-                                    @foreach($doctors as $doctor)
-                                        <option {{isset($data->doctor_id) && $data->doctor_id == $doctor->id ? 'selected' : ''}} value="{{$doctor->id}}">{{ $doctor->employee->first_name}} {{ $doctor->employee->last_name}}</option>
-                                    @endforeach
-                                </option>
+                                <option value="">Select</option>
+                                @foreach($doctors as $doctor)
+                                    <option {{isset($data->doctor_id) && $data->doctor_id == $doctor->id ? 'selected' : ''}} value="{{$doctor->id}}">{{ $doctor->employee->first_name}} {{ $doctor->employee->last_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
@@ -55,7 +57,7 @@
                                 <option value="">-- Select Time --</option>
 
                                 @for ($time = $start; $time <= $end; $time += $interval)
-                                    <option {{ isset($data->time) && $data->time == date('H:i', $time) ? 'selected' : '' }} value="{{ date('H:i A', $time) }}">
+                                    <option {{ isset($data->time) && $data->time == strtotime($time) ? 'selected' : '' }} value="{{ strtotime($time) }}">
                                         {{ date('h:i A', $time) }}
                                     </option>
                                 @endfor
@@ -69,9 +71,24 @@
                         
                         <div class=" col-md-4 form-group">
                             <label>Description:</label>
-                            <input type="text" name="description" class="form-control" id="description" required="" value="{{$data->description ?? ''}}">
+                            <input type="text" name="description" class="form-control" id="description" value="{{$data->description ?? ''}}">
                         </div>
                         
+                        <div class=" col-md-4 form-group discount_section" style="display: {{ isset($data->discount) ? 'block' : 'none' }};">
+                            <label>Discount:</label>
+                            <input type="text" name="discount" class="form-control" id="discount" value="{{$data->discount ?? ''}}">
+                        </div>
+                        
+                        <div class=" col-md-4 form-group discount_section" style="display: {{ isset($data->discount) ? 'block' : 'none' }};">
+                            <label>Discount Description:</label>
+                            <input type="text" name="discount_description" class="form-control" id="discount_description" value="{{$data->discount_description ?? ''}}">
+                        </div>
+                        <div class=" col-md-4 form-group">
+                            <label>Apply Discount:</label>
+                            <div class="time">
+                                <input type="checkbox" name="apply_discount" class="form-checkbox apply_discount" id="apply_discount" {{ isset($data->discount) ? 'checked' : '' }}>
+                            </div>
+                        </div>
                         {{-- @else
                         <div class=" col-md-4 form-group">
                             <label>Patient:</label>
