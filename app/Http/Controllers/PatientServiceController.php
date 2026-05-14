@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\PatientService;
 use App\Models\Service;
+use App\Models\ServicePackage;
 use Illuminate\Http\Request;
 
 class PatientServiceController extends Controller
@@ -54,9 +55,9 @@ class PatientServiceController extends Controller
             // return back()->with('success', 'Data saved Successfully.');
 
         }
-        $service = Service::find($data->service_id);
-        // dd($service->service_packages);
-        return view('patient_services.print', compact('data','service'));
+        $packages = ServicePackage::where('service_id',$data->service_id)->get();
+        // dd($packages->package);
+        return view('patient_services.print', compact('data','packages'));
 
     }
     

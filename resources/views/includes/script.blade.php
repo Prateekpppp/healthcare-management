@@ -77,7 +77,7 @@
             //     liveSearch: true
             // });
 
-            @if(method_exists($data, 'links'))
+            @if(isset($data) && method_exists($data, 'links'))
                 @php
                     $page = $request->page ?? 1;
                 @endphp

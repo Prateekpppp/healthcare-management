@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Appdata;
 use App\Models\Hospital;
+use App\Models\Patient;
 use App\Models\Role;
 
 class CustomSessionMiddleware
@@ -40,10 +41,12 @@ class CustomSessionMiddleware
 
         $hostpital = Hospital::first();
 
+        $patients = Patient::all();
         
         View::share('currentUser',$currentUser);
         View::share('roles',$roles);
         View::share('hospital',$hostpital);
+        View::share('patients',$patients);
         View::share('request',$request);
         // dd($request->all());
         return $next($request);

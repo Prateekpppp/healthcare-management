@@ -37,11 +37,11 @@
                                 $subTotal += $data->service->amount ?? 0;
                             @endphp
 
-                            @if($data->packageSales->count() > 0)
+                            @if($packages->count() > 0)
                             <tr>
                                 <td colspan="3" style="height:40px;"> Packages</td>
                             </tr>
-                            @foreach($data->packageSales as $packageSale)
+                            @foreach($packages as $packageSale)
                             <tr>
                                 <td>{{$packageSale->package->name ?? '--'}}</td>
                                 <td>--</td>
@@ -49,7 +49,7 @@
                             </tr>
                             @php
                                 $packageSubtotal += $packageSale->package->price ?? 0;
-                                $subTotal += $packageSubtotal ?? 0;
+                                $subTotal += $packageSale->package->price ?? 0;
                             @endphp
                             @endforeach
                             <tr>

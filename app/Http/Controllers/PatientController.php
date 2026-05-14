@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Doctor;
 use App\Models\PackageSale;
+use App\Models\PatientService;
 use App\Models\Service;
 
 class PatientController extends Controller
@@ -62,7 +63,10 @@ class PatientController extends Controller
         $data = Patient::find($id);
         //return $patient->appointments()->get();
         $doctors = Doctor::get();
-        return view('patients.profile' , compact('data', 'doctors'));
+        $services = PatientService::where('patient_id',$id)->get();
+        // $appointments = $data->appointments()->get();
+        // dd($data->slots);
+        return view('patients.profile' , compact('data', 'doctors','services'));
         //
     }
 
@@ -167,13 +171,13 @@ class PatientController extends Controller
         if ($service_id) {
             $service = $patient->patientservices()->where('service_id', $service_id)->with('service')->first();
             // $service = Service::find($service_id);
-            // dd($service);
+            // dd($service->service);
             if ($service) {
                 // $fee = $service->pivot->fee;
-                $fee = $service->service->fee;
+                $fee = $service->service->amount;
             }
         }
-        $packages = $patient->packageSales()->with('package')->get();
+        $packages = Service::find($service_id)->service_packages()->with('package')->get();
         // dd($packages);
         foreach ($packages as $key => $package) {
             $fee += $package->package->price;

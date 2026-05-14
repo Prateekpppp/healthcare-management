@@ -83,7 +83,7 @@
             
             @permission
             <!-- Today invoice collection -->
-            <div class="col-12 grid-margin">
+            {{-- <div class="col-12 grid-margin d-none">
                 <div class="panel-heading">Today's Collection</div>
                 <div class="card">
                     <div class="table-responsive">
@@ -115,13 +115,16 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Today collection ends -->
             @endpermission
             <!-- Appointment for today -->
             <div class="col-12 grid-margin">
                 <div class="panel-heading">Today's Appointment</div>
                 <div class="card">
+                    @php
+                        $data = $appointments;
+                    @endphp
                     @include('appointments.data')
                 </div>
             </div>

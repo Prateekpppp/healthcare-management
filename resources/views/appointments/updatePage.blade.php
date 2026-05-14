@@ -75,7 +75,7 @@
                         </div>
                         
                         <div class=" col-md-4 form-group discount_section" style="display: {{ isset($data->discount) ? 'block' : 'none' }};">
-                            <label>Discount:</label>
+                            <label>Discount %:</label>
                             <input type="text" name="discount" class="form-control" id="discount" value="{{$data->discount ?? ''}}">
                         </div>
                         
@@ -84,7 +84,7 @@
                             <input type="text" name="discount_description" class="form-control" id="discount_description" value="{{$data->discount_description ?? ''}}">
                         </div>
                         <div class=" col-md-4 form-group">
-                            <label>Apply Discount:</label>
+                            <label>Apply Discount %:</label>
                             <div class="time">
                                 <input type="checkbox" name="apply_discount" class="form-checkbox apply_discount" id="apply_discount" {{ isset($data->discount) ? 'checked' : '' }}>
                             </div>

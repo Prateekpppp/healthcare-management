@@ -83,7 +83,9 @@ class InvoiceController extends Controller
 
     public function print(Request $request){
         $data = Invoice::find($request->id);
-        return view('invoices.print', compact('data'));
+        // $service = Service::find($data->service_id);
+        $packages = Service::find($data->service_id)->service_packages()->with('package')->get();
+        return view('invoices.print', compact('data','packages'));
     }
     // public function index()
     // {

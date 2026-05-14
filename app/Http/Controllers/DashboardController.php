@@ -26,9 +26,9 @@ class DashboardController extends Controller
         $patients = Patient::get();
         $appointments = Appointment::whereDate('appointment_date', '=', date('Y-m-d'))->get();
         if($this->currentUser->role_id == 2){
-          $appointments = Appointment::where('doctor_id',$this->doctor_id)->paginate(10)->get();
+          $appointments = Appointment::where('doctor_id',$this->doctor_id)->limit(10)->get();
         } else{
-          $appointments = Appointment::paginate(10);
+          $appointments = Appointment::limit(10)->get();
         }
         // dd($this->currentUser->id);
         $opds = OpdSales::whereDate('created_at' , '=', date('Y-m-d'))->get();

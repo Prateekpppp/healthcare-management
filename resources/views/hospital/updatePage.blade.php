@@ -24,6 +24,12 @@
                         <input name="id" type="hidden" class="form-control" id="id" value="{{$data->id}}" >
                         @endif
                         <div class="col-md-4 form-group">
+                            {{-- <img src="" alt="" srcset=""> --}}
+                            <label>Logo:</label>
+                            <input type="file" name="logo" class="form-control" >
+                        </div>
+                        
+                        <div class="col-md-4 form-group">
                             <label>Name:</label>
                             <input type="text" name="name" class="form-control" required 
                                 value="{{ $data->name ?? '' }}">

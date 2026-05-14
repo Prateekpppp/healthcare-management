@@ -34,14 +34,14 @@
                                 $subTotal += $data->service->amount ?? 0;
                             @endphp
 
-                            @if($service->service_packages->count() > 0)
+                            @if(isset($packages) && $packages->count() > 0)
                             <tr>
                                 <td colspan="3" style="height:40px;"> Packages</td>
                             </tr>
-                            @foreach($data->packageSales as $packageSale)
+                            @foreach($packages as $packageSale)
                             <tr>
                                 <td>{{$packageSale->package->name ?? '--'}}</td>
-                                <td>--</td>
+                                <td>{{$packageSale->package->description ?? '--'}}</td>
                                 <td colspan="2">{{$packageSale->package->price ?? '--'}}</td>
                             </tr>
                             @php

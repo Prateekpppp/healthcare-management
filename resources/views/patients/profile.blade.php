@@ -14,7 +14,7 @@
             </h2>
             <div class="d-flex gap-3">
                 <a href="{{ route('pages.patientServices',['patient_id'=>$data->id]) }}" class="btn btn-primary"> Services </a>
-                <a href="{{ route('pages.packageSales',['patient_id'=>$data->id]) }}" class="btn btn-primary"> Packages </a>
+                {{-- <a href="{{ route('pages.packageSales',['patient_id'=>$data->id]) }}" class="btn btn-primary"> Packages </a> --}}
                 <a href="{{ route('pages.invoices',['patient_id'=>$data->id]) }}" class="btn btn-primary"> Invoices </a>
                 <a href="{{ route('pages.slots',['patient_id'=>$data->id]) }}" class="btn btn-primary"> Slots </a>
             </div>
@@ -147,55 +147,46 @@
                     Patient Appointment History
                 </div>
                 @php
-                    $appointments = $data->appointments;
+                    $patient_id = $data->id;
+                    $patient = $data;
+                    $data = $data->appointments;
                 @endphp
                     @include('appointments.data')
             </div>
             
             <!-- Service HISTORY PLACEHOLDER -->
-            <div class="card mb-3 d-none">
+            <div class="card mb-3 d-non">
                 <div class="card-header">
-                    Patient Service History
+                    Patient Service
                 </div>
                 <div class="card-body table-responsive">
 
                     <table class="table table-bordered table-sm">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                {{-- <th>ID</th> --}}
                                 {{-- <th>Appointment</th> --}}
-                                <th>Doctor</th>
+                                <th>Therapy</th>
                                 <th>Description</th>
-                                <th>Time</th>
-                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @if($data->appointments->count())
-                                @foreach($data->appointments()->get() as $appointment)
+                            @if($services->count())
+                                @foreach ($services as $service)
+                                    
                                     <tr>
-                                        <td>{{$appointment->id}}</td>
-                                        {{-- <td>{{$appointment->name}}</td> --}}
-                                        <td>{{$appointment->doctor->employee->first_name}}</td>
-                                        <td>{{$appointment->description}}</td>
-                                        <td>{{$appointment->time}}</td>
+                                        <td>{{$service->service->name}}</td>
+                                        <td>{{$service->service->description}}</td>
                                         <td>
-                                        @if($appointment->status)
-                                        <a class="btn btn-success" href="{{ route('appointment.edit',$appointment->id) }}"><span class=" glyphicon glyphicon-ok"></span> Complete</a>	
-                                        @else
-                                        <a class="btn btn-warning" href="{{ route('appointment.edit',$appointment->id) }}"><span class=" glyphicon glyphicon-refresh"> </span> Pending</a>
-                                        @endif
-                                    </td>
-                                        <td>
-                                            <a href="{{ route('pages.updateAppointment',['id'=>$appointment->id]) }}" class="edit-appointment btn btn-primary"> Edit </a>
+                                            <a href="{{ route('pages.updatePatientService',['id'=>$service->id,'patient_id'=>$patient_id]) }}" class="btn btn-primary"> Edit </a>
                                         </td>
                                     </tr>
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="4" class="text-center">No Appointment history found</td>
+                                    <td colspan="4" class="text-center">No Data found</td>
                                 </tr>
                             @endif
 
@@ -204,6 +195,19 @@
 
                 </div>
             </div>
+            
+            @if(isset($patient->slots) && $patient->slots->count())
+            <!-- Slot HISTORY PLACEHOLDER -->
+            <div class="card mb-3 d-non">
+                <div class="card-header">
+                    Patient Slots
+                </div>
+                @php
+                    $data = $patient->slots;
+                @endphp
+            @include('slots.data')
+            </div>
+            @endif
 
         </div>
 

@@ -92,6 +92,13 @@ class SlotController extends Controller
         ]);
     }
 
+    public function print(Request $request){
+        $data = Slot::find($request->id);
+        // dd($data->patient);
+        $data->invoice_no = $this->hospital->invoice_prefix . $data->id;
+        return view('slots.print', compact('data'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -30,8 +30,8 @@
 						    	<tr>
 						    	<td>{{$cnt+=1}}</td>
 						    	{{-- <td>{{$appointment->name}}</td> --}}
-						    	<td>{{$appointment->patient->first_name}} {{$appointment->patient->last_name}}</td>
-						    	<td>{{$appointment->doctor->employee->first_name}} {{$appointment->doctor->employee->middle_name}} {{$appointment->doctor->employee->last_name}}</td>
+						    	<td>{{$appointment->patient->first_name}}</td>
+						    	<td>{{$appointment->doctor->employee->first_name}}</td>
 						    	<td>{{$appointment->doctor->fee}}</td>
 						    	<td>{{$appointment->description}}</td>
 						    	<td>{{date('h i A',$appointment->time)}}</td>

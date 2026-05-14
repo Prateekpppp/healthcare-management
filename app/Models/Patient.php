@@ -48,5 +48,10 @@ class Patient extends BaseModel
     {
         return $this->belongsTo('App\Models\Disease', 'disease_id');
     }
+
+    public function services()
+    {
+        return $this->hasMany('App\Models\Service');
+    }
     //
 }

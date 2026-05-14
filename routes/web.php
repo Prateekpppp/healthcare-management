@@ -37,7 +37,8 @@ use App\Http\Controllers\{
     PackageSaleController,
     PatientServiceController,
     ServicePackageController,
-    SlotController
+    SlotController,
+    TransactionController
 };
 use App\Jobs\SendPatientMailJob;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -172,6 +173,7 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::get('updateSlot', [SlotController::class,'updatePage'])->name('pages.updateSlot');
     Route::post('updateSlot', [SlotController::class,'updateData'])->name('post.updateSlot');
     Route::get('avaiableSlots', [SlotController::class, 'avaiableSlots'])->name('get.avaiableSlots');
+    Route::get('printSlot', [SlotController::class, 'print'])->name('pages.printSlot');
 
     // Invoice
     // Route::controller(InvoiceController::class)->prefix('invoice')->group(function () {
@@ -191,6 +193,9 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::get('updateInvoice', [InvoiceController::class,'updatePage'])->name('pages.updateInvoice');
     Route::get('printInvoice', [InvoiceController::class,'print'])->name('pages.printInvoice');
     Route::post('updateInvoice', [InvoiceController::class,'updateData'])->name('post.updateInvoice');
+    
+    Route::resource('transactions', TransactionController::class);
+    Route::get('transactions', [TransactionController::class,'index'])->name('pages.transactions');
 
 
     // Employee

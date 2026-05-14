@@ -17,6 +17,6 @@ class ServicePackage extends BaseModel
 
     public function package()
     {
-        return $this->hasOne('App\Models\Package','id','package_id');
+        return $this->belongsTo('App\Models\Package');
     }
 }
