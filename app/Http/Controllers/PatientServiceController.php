@@ -33,7 +33,7 @@ class PatientServiceController extends Controller
         $data = PatientService::filter($request->only(['service_id','appointment_id']))->first();
         
         // dd($data,$request->all());
-        if(isset($data->id) && $data->id){
+        if($data && isset($data->id) && $data->id){
         // if(isset($request->id) && $request->id){
             $data->medicine = explode(',',$data->medicine);
             // dd($data);
@@ -62,7 +62,7 @@ class PatientServiceController extends Controller
             $data = PatientService::filter($request->only(['service_id','appointment_id']))->first();
             
             // dd($data,$request->all());
-            if(isset($data->id) && $data->id){
+            if($data && isset($data->id) && $data->id){
                 // dd($data->id);
                 $data->update($request->all());
                 // return back()->with('success', 'Data updated successfully');
