@@ -76,26 +76,31 @@
                         <div class="col-md-3 form-group">
                             <label>Payment Type:</label>
 
-                            <select name="payment_type" class="form-control">
+                            <select name="payment_mode" class="form-control">
 
                                 <option value="Cash"
-                                    {{ ($data->payment_type ?? '') == 'Cash' ? 'selected' : '' }}>
+                                    {{ ($data->payment_mode ?? '') == 'Cash' ? 'selected' : '' }}>
                                     Cash
                                 </option>
 
                                 <option value="Cheque"
-                                    {{ ($data->payment_type ?? '') == 'Cheque' ? 'selected' : '' }}>
+                                    {{ ($data->payment_mode ?? '') == 'Cheque' ? 'selected' : '' }}>
                                     Cheque
                                 </option>
 
                                 <option value="Credit"
-                                    {{ ($data->payment_type ?? '') == 'Credit' ? 'selected' : '' }}>
+                                    {{ ($data->payment_mode ?? '') == 'Credit' ? 'selected' : '' }}>
                                     Credit
                                 </option>
 
                             </select>
                         </div>
 
+                        <div class=" col-md-4 form-group">
+                            <label>Tansaction No.:</label>
+                            <input type="text" name="transaction_no" class="form-control" id="transaction_no" value="{{$data->transaction_no ?? ''}}">
+                        </div>
+                        
                         <div class="col-md-2 form-group">
                             <label>Invoice No:</label>
 

@@ -34,6 +34,8 @@
   <script src="{{ asset('assets') }}/vendors/datatables.net/jquery.dataTables.js"></script>
   <script src="{{ asset('assets') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
   <script src="{{ asset('assets') }}/js/data-table.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     @include('includes/ajaxCalls')
     @include('includes/script')
 

@@ -66,7 +66,7 @@
 						    	<td>{{$value->amount}}</td>
 						    	<td>
                                     <div class="d-flex gap-3">
-                                        <a href="{{ route('pages.servicePackage',['id'=>$value->id]) }}" class="edit-appointment btn btn-secondary"> Package </a>
+                                        {{-- <a href="{{ route('pages.servicePackage',['id'=>$value->id]) }}" class="edit-appointment btn btn-secondary"> Package </a> --}}
                                         <a href="{{ route('pages.updateService',['id'=>$value->id]) }}" class="edit-appointment btn btn-primary"> Edit </a>
                                         @permission
                                         <a href="{{route('app_action.trash',['model'=>'Service','id'=>$value->id])}}" class="delete-modal btn btn-danger"

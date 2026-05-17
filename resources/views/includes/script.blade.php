@@ -81,7 +81,7 @@
                 @php
                     $page = $request->page ?? 1;
                 @endphp
-            let pagination = `<nav aria-label="Page navigation">
+                let pagination = `<nav aria-label="Page navigation">
                                 <ul class="pagination justify-content-center">
 
                                     <!-- Previous Button -->
@@ -112,8 +112,33 @@
                             </nav>`;
 
                             
-            $('.table-responsive').after(pagination);
+                $('.table-responsive').after(pagination);
             @endif
 
+            function downloadExcel(btn)
+            {
+                let table = $(btn).parents().find('.table-responsive');
+                
+                let workbook = XLSX.utils.table_to_book(table[0]);
+
+                XLSX.writeFile(workbook, 'table.xlsx');
+            }
+
+            $('body').on('click','.downloadExcel', function(){
+                downloadExcel(this);
+            })
+
+            $('.table-responsive').before(`
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary downloadExcel">
+                            Excel
+                        </button>
+                    </div>
+            `);
         });
+        // $('.multiple-select').select2({
+        //     placeholder: "Select options",
+        //     width: '100%'
+        // });
+        $('.multiple-select').dropdown();
 </script>

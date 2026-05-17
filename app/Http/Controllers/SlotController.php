@@ -72,12 +72,13 @@ class SlotController extends Controller
 
     public function avaiableSlots(Request $request){
         $slots = Slot ::where('inventory_id', $request->inventory_id)
+        ->whereDate('booking_date', $request->booking_date)
         // ->where(function($query) use ($request){
         //     $query->whereDate('from', '<=', $request->from)
         //     ->whereDate('to', '>=', $request->from);
         // })
-        ->whereDate('from', '<=', $request->from)
-        ->whereDate('to', '>=', $request->from)
+        // ->whereDate('from', '<=', $request->from)
+        // ->whereDate('to', '>=', $request->from)
         // ->where(function($query) use ($request){
         //     $query->whereTime('start_time', '<=', $request->start_time)
         //     ->whereTime('end_time', '>=', $request->start_time);

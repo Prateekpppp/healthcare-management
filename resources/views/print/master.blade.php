@@ -166,7 +166,7 @@
 
     .invoice-container {
         width: 100%;
-        padding: 10mm;
+        /* padding: 10mm; */
         zoom: 0.85;
     }
 
@@ -195,7 +195,7 @@
 
     @page {
         size: A4 portrait;
-        margin: 5mm;
+        margin: 0mm;
     }
 
     .no-print {
@@ -206,11 +206,21 @@
     </style>
 </head>
 <body>
-
 <div class="invoice-container">
     <div class="container">
+    <div class="text-center my-3 no-print d-flex justify-content-between gap-2">
 
-        <div class="invoice-wrapper shadow-sm">
+        <button onclick="history.back()" class="btn btn-secondary">
+            Back
+        </button>
+
+        <button onclick="printInvoice()" class="btn btn-success">
+            Print
+        </button>
+
+    </div>
+
+        <div class="invoice-wrapper">
 
             <div class="top-bar"></div>
 
@@ -219,23 +229,23 @@
                 <!-- HEADER -->
                 <div class="row align-items-start mb-5">
 
-                    <div class="col-md-6">
+                    <div class="col-md-9">
 
                         <div class="d-flex gap-3">
 
-                            <div class="logo-circle">
-                                LOGO
-                            </div>
+                            {{-- <div class="logo-circle"> --}}
+                                <img class="logo-circle" src="{{asset('/').$hospital->logo}}" alt="photo" width="50px" height="50px">
+                            {{-- </div> --}}
 
                             <div>
                                 <div class="company-name">
-                                    {{$hostpital->name ?? 'Hospital Name'}}
+                                    {{$hospital->name ?? 'Hospital Name'}}
                                 </div>
 
                                 <div class="small-text">
-                                    {{$hostpital->address ?? 'Hospital Address'}} <br>
-                                    +91 {{$hostpital->phone ?? 'Hospital Phone'}} <br>
-                                    {{$hostpital->email ?? 'Hospital Email'}}
+                                    {{$hospital->address ?? 'Hospital Address'}} <br>
+                                    +91 {{$hospital->contact ?? 'Hospital Contact'}} <br>
+                                    {{$hospital->email ?? 'Hospital Email'}}
                                 </div>
                             </div>
 
@@ -243,15 +253,17 @@
 
                     </div>
 
-                    <div class="col-md-6 text-md-end mt-4 mt-md-0">
+                    <div class="col-md-3 text-md-end mt-4 mt-md-0">
 
                         <div class="invoice-title">
-                            INVOICE
+                            {{$invoice_type ?? 'Invoice'}}
                         </div>
 
                         <div class="small-text mt-3">
-                            <strong>Invoice #:</strong> {{$data->invoice_no ?? 'N/A'}} <br>
-                            <strong>Date:</strong> {{$data->date ?? 'N/A'}}
+                            @if(isset($data->invoice_no))
+                            <strong>{{$invoice_type ?? 'Invoice'}} #:</strong> {{$data->invoice_no ?? 'N/A'}} <br>
+                            @endif
+                            <strong>Date:</strong> {{$data->date ?? ($data->created_at ?? 'N/A')}}
                         </div>
 
                     </div>
@@ -259,7 +271,7 @@
                 </div>
 
                 <!-- PAYMENT TERMS -->
-                <div class="row mb-4">
+                {{-- <div class="row mb-4">
 
                     <div class="col-12 text-md-end">
                         <div class="small-text">
@@ -267,7 +279,7 @@
                         </div>
                     </div>
 
-                </div>
+                </div> --}}
 
                 <!-- BILLING -->
                 <div class="row mb-5">
@@ -276,21 +288,6 @@
 
                         <div class="section-title">
                             BILL TO
-                        </div>
-
-                        <div class="small-text">
-                            {{$data->patient->first_name ?? '--'}} <br>
-                            {{$data->patient->address ?? '--'}} <br>
-                            {{-- Address Line 2 <br>
-                            City, State --}}
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <div class="section-title">
-                            SHIP TO
                         </div>
 
                         <div class="small-text">
@@ -313,5 +310,19 @@
     </div>
 </div>
 
+<script>
+    function printInvoice() {
+
+        const printButton = document.querySelector('.no-print');
+
+        printButton.style.display = 'none';
+
+        window.print();
+
+        setTimeout(() => {
+            printButton.style.display = 'block';
+        }, 500);
+    }
+</script>
 </body>
 </html>

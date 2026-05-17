@@ -1,0 +1,4 @@
+ALTER TABLE patient_services
+ADD CONSTRAINT patient_services_unique
+UNIQUE(service_id, patient_id, appointment_id);
+

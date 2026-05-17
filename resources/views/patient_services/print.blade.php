@@ -8,52 +8,38 @@
 
                         <thead>
                             <tr>
-                                <th>NAME</th>
-                                <th width="50%">DESCRIPTION</th>
-                                <th>UNIT PRICE</th>
+                                <th colspan="2">Desciption</th>
                             </tr>
                         </thead>
 
                         <tbody>
 
-                            @php
-                                $subTotal = 0;
-                                $packageSubtotal = 0;
-                            @endphp
+                            <tr>
+                                <th colspan="2">Therapy</th>
+                            </tr>
+                            <tr>
+                                <th>NAME</th>
+                                <th width="50%">No. of Days</th>
+                            </tr>
                             <tr>
                                 <td>{{$data->service->name ?? '--'}}</td>
-                                <td>{{$data->description ?? '--'}}</td>
-                                <td>{{$data->service->amount ?? '--'}}</td>
+                                <td>{{$data->no_of_days ?? '--'}}</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td colspan="" style="height:40px;"> Total</td>
-                                <td colspan="" style="height:40px;"> {{$data->service->amount ?? '--'}}</td>
-                            </tr>
-                            @php
-                                $subTotal += $data->service->amount ?? 0;
-                            @endphp
 
-                            @if(isset($packages) && $packages->count() > 0)
+                            @if(isset($medicines) && $medicines->count() > 0)
                             <tr>
-                                <td colspan="3" style="height:40px;"> Packages</td>
+                                <th colspan="2">Medicines</th>
                             </tr>
-                            @foreach($packages as $packageSale)
                             <tr>
-                                <td>{{$packageSale->package->name ?? '--'}}</td>
-                                <td>{{$packageSale->package->description ?? '--'}}</td>
-                                <td colspan="2">{{$packageSale->package->price ?? '--'}}</td>
+                                <th>NAME</th>
+                                <th width="50%">Description</th>
                             </tr>
-                            @php
-                                $packageSubtotal += $packageSale->package->price ?? 0;
-                                $subTotal += $packageSubtotal ?? 0;
-                            @endphp
+                            @foreach($medicines as $medicine)
+                            <tr>
+                                <td>{{$medicine->name ?? '--'}}</td>
+                                <td>{{$medicine->description ?? '--'}}</td>
+                            </tr>
                             @endforeach
-                            <tr>
-                                <td></td>
-                                <td colspan="" style="height:40px;"> Package total</td>
-                                <td colspan="" style="height:40px;"> {{$packageSubtotal ?? '--'}}</td>
-                            </tr>
                             @endif
                             
                         </tbody>
@@ -74,34 +60,6 @@
                             Thank you for your business. <br>
                             Please make payment before the due date.
                         </div> --}}
-
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <table class="table totals-table w-100">
-
-                            <tr>
-                                <td>Subtotal</td>
-                                <td class="text-end">{{$subTotal ?? '--'}}</td>
-                            </tr>
-
-                            {{-- <tr>
-                                <td>Tax</td>
-                                <td class="text-end">₹1,500</td>
-                            </tr> --}}
-
-                            <tr>
-                                <td>Discount</td>
-                                <td class="text-end">{{$data->discount ?? '--'}}</td>
-                            </tr>
-
-                            <tr>
-                                <td class="balance-text">Balance Due</td>
-                                <td class="text-end balance-text">{{$subTotal - (float) (($data->discount * $subTotal) / 100)}}</td>
-                            </tr>
-
-                        </table>
 
                     </div>
 

@@ -70,6 +70,19 @@
                         </div>
                         
                         <div class=" col-md-4 form-group">
+                            <label>Payment Mode:</label>
+                            <select name="payment_mode" class="form-control" id="payment_mode">
+                                <option {{ isset($data->payment_mode) && $data->payment_mode == 'Cash' ? 'selected' : '' }} value="Cash">Cash</option>
+                                <option {{ isset($data->payment_mode) && $data->payment_mode == 'Online' ? 'selected' : '' }} value="Online">Online</option>
+                            </select>
+                        </div>
+                        
+                        <div class=" col-md-4 form-group">
+                            <label>Tansaction No.:</label>
+                            <input type="text" name="transaction_no" class="form-control" id="transaction_no" value="{{$data->transaction_no ?? ''}}">
+                        </div>
+
+                        <div class=" col-md-4 form-group">
                             <label>Description:</label>
                             <input type="text" name="description" class="form-control" id="description" value="{{$data->description ?? ''}}">
                         </div>

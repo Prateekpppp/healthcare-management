@@ -51,14 +51,29 @@
                             {{-- <input type="hidden" name="appointment_id" class="form-control" required id="appointment_id" value="{{$appointments->id}}" readonly>
                             <input type="text" name="appointment_date" class="form-control" required id="appointment_date" value="{{$appointments->appointment_date}}" disabled> --}}
                             <select name="appointment_id" class="form-control" required id="appointment_id">
-                                    <option value="">Select</option>
+                                    {{-- <option value="">Select</option> --}}
                                     @foreach($appointments as $appointment)
                                         <option {{(isset($data->appointment_id) && $data->appointment_id == $appointment->id) || isset($request->appointment_id) && $request->appointment_id == $appointment->id ? 'selected' : ''}} value="{{$appointment->id}}">{{ $appointment->appointment_date}}</option>
                                     @endforeach
                             </select>
                         </div>
 
-                        <div class=" col-md-4 form-group discount_section" style="display: {{ isset($data->discount) && $data->discount ? 'block' : 'none' }};">
+                        <div class=" col-md-4 form-group discount_section">
+                            <label>Number of Days:</label>
+                            <input type="number" name="no_of_days" class="form-control" id="no_of_days" value="{{$data->no_of_days ?? ''}}">
+                        </div>
+                        
+                        <div class=" col-md-4 form-group">
+                            <label>Medicine:</label>
+                            <select name="medicine[]" class="form-select form-control multiple-select" multiple id="medicine">
+                                    <option value="">Select</option>
+                                    @foreach($medicines as $medicine)
+                                        <option {{isset($data->medicine) && in_array($medicine->id,$data->medicine) ? 'selected' : ''}} value="{{$medicine->id}}">{{ $medicine->name}}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+
+                        {{-- <div class=" col-md-4 form-group discount_section" style="display: {{ isset($data->discount) && $data->discount ? 'block' : 'none' }};">
                             <label>Discount %:</label>
                             <input type="text" name="discount" class="form-control" id="discount" value="{{$data->discount ?? ''}}">
                         </div>
@@ -72,7 +87,7 @@
                             <div class="time">
                                 <input type="checkbox" name="apply_discount" class="form-checkbox apply_discount" id="apply_discount" {{ isset($data->discount) && $data->discount ? 'checked' : '' }}>
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- <div class=" col-md-4 form-group">
                             <label>Price:</label>
                             <input type="text" name="amount" class="form-control" id="amount" required="" value="{{$data->amount ?? ''}}">

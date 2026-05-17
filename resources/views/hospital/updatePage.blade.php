@@ -18,13 +18,16 @@
             
             <div class="col-12 grid-margin">
                 <div class="card">
-                    <form class="row" action="{{route('post.updateHospital')}}" method="post">
+                    <form class="row" action="{{route('post.updateHospital')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @if(isset($data))
                         <input name="id" type="hidden" class="form-control" id="id" value="{{$data->id}}" >
                         @endif
                         <div class="col-md-4 form-group">
                             {{-- <img src="" alt="" srcset=""> --}}
+                            @if(isset($data->logo) && $data->logo)
+                            <img src="{{asset('/').$data->logo}}" alt="logo" width="50px" height="50px">
+                            @endif
                             <label>Logo:</label>
                             <input type="file" name="logo" class="form-control" >
                         </div>

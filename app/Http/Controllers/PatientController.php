@@ -145,21 +145,24 @@ class PatientController extends Controller
 
     public function updateData(Request $request)
     {
+        $doctors = Doctor::get();
         if(isset($request->id) && $request->id){
 
             $data = Patient::find($request->id);
             // dd($data);
             $data->update($request->all());
+            $services = PatientService::where('patient_id',$request->id)->get();
             // return back()->with('success', 'Data updated successfully');
 
         } else{
 
             $data = Patient::create($request->all());
+            $services = PatientService::where('patient_id',$data->id)->get();
             // return back()->with('success', 'Data saved Successfully.'); 
 
         }
         // return back()->with('success', 'Data updated successfully');
-        return view('patients.profile' , compact('data'));
+        return view('patients.profile' , compact('data','services'));
         
     }
 

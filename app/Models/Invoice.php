@@ -17,7 +17,7 @@ class Invoice extends BaseModel
      */
     protected $dates = ['deleted_at'];
 
-	protected $fillable = ['patient_id','service_id','invoice_no','comment','payment_type','sub_total', 'tax_amount', 'total_amount','discount','user_id','status', 'cash'];
+	protected $fillable = ['patient_id','service_id','invoice_no','comment','payment_type','sub_total', 'tax_amount', 'total_amount','discount','user_id','status', 'cash','payment_mode','transaction_no'];
 
 	public function patient()
     {

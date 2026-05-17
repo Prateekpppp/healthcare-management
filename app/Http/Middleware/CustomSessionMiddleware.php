@@ -39,16 +39,16 @@ class CustomSessionMiddleware
 
         $currentUser = User::getCurrentUser();
 
-        $hostpital = Hospital::first();
+        $hospital = Hospital::first();
 
         $patients = Patient::all();
         
         View::share('currentUser',$currentUser);
         View::share('roles',$roles);
-        View::share('hospital',$hostpital);
+        View::share('hospital',$hospital);
         View::share('patients',$patients);
         View::share('request',$request);
-        // dd($request->all());
+        // dd($hospital->name);
         return $next($request);
     }
 }

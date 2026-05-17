@@ -8,7 +8,7 @@ class Appointment extends BaseModel
 {
 	protected $fillable = 
 	[
-        'name', 'description', 'time', 'patient_id', 'doctor_id', 'status', 'appointment_date','doctor_fee','discount','discount_description'
+        'name', 'description', 'time', 'patient_id', 'doctor_id', 'status', 'appointment_date','doctor_fee','discount','discount_description','payment_mode','transaction_no'
     ];
 
     public function patient()

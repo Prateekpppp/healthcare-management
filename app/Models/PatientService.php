@@ -9,7 +9,7 @@ class PatientService extends BaseModel
     //
 	protected $fillable = 
 	[
-        'patient_id', 'appointment_id', 'service_id', 'quantity','package_id','discount','discount_description'
+        'patient_id', 'appointment_id', 'service_id', 'quantity','package_id','discount','discount_description','no_of_days','medicine'
     ];
 
     public function appointments()

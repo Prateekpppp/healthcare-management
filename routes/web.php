@@ -127,6 +127,8 @@ Route::middleware(['auth','custom_session_middleware'])->group(function () {
     Route::get('patientServices', [PatientServiceController::class,'index'])->name('pages.patientServices');
     Route::get('updatePatientService', [PatientServiceController::class,'updatePage'])->name('pages.updatePatientService');
     Route::post('updatePatientService', [PatientServiceController::class,'updateData'])->name('post.updatePatientService');
+    Route::get('printPatientService', [PatientServiceController::class,'print'])->name('pages.printPatientService');
+    Route::get('getPatientService', [PatientServiceController::class,'getPatientService'])->name('get.getPatientService');
 
     // Service Package
     Route::get('servicePackage', [ServicePackageController::class,'index'])->name('pages.servicePackage');
